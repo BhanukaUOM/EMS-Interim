@@ -30,7 +30,7 @@ class PasswordResetController extends Controller
             }
             Mail::to($request->email)->send(new ResetPasswordMail($token));
             return response()->json(
-                ['data' => 'Reset email sent sucessfully!! /nPlease check mail inbox.'], Response::HTTP_OK
+                ['data' => 'Reset email sent sucessfully!! Please check mail inbox.'], Response::HTTP_OK
             );
         }
     }
