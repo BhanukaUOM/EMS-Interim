@@ -408,7 +408,9 @@ var LoginComponent = /** @class */ (function () {
         this.error = null;
     }
     LoginComponent.prototype.ngOnInit = function () {
+        console.log(JSON.parse(atob(this.token.get().split('.')[0])));
         console.log(JSON.parse(atob(this.token.get().split('.')[1])));
+        console.log(JSON.parse(atob(this.token.get().split('.')[2])));
     };
     LoginComponent.prototype.onSubmit = function () {
         var _this = this;
