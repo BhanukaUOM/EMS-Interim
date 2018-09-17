@@ -126,7 +126,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ngx-spinner bdColor=\"rgba(51,51,51,0.8)\"\r\nsize=\"medium\"\r\ncolor=\"#fff\"\r\ntype=\"ball-scale-multiple\">\r\n<p style=\"font-size: 20px; color: white\">Loading...</p>></ngx-spinner>\r\n<app-navbar></app-navbar>\r\n<ng-snotify></ng-snotify>\r\n<router-outlet></router-outlet>"
+module.exports = "<app-navbar></app-navbar>\r\n<ng-snotify></ng-snotify>\r\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -393,7 +393,7 @@ var HomeComponent = /** @class */ (function () {
         setTimeout(function () {
             /** spinner ends after 5 seconds */
             _this.spinner.hide();
-        }, 5000);
+        }, 1000);
     };
     HomeComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
