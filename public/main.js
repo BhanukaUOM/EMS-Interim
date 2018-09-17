@@ -126,7 +126,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ngx-spinner></ngx-spinner>\r\n<app-navbar></app-navbar>\r\n<ng-snotify></ng-snotify>\r\n<router-outlet></router-outlet>"
+module.exports = "<ngx-spinner bdColor=\"rgba(51,51,51,0.8)\"\r\nsize=\"medium\"\r\ncolor=\"#fff\"\r\ntype=\"ball-scale-multiple\">\r\n<p style=\"font-size: 20px; color: white\">Loading...</p>></ngx-spinner>\r\n<app-navbar></app-navbar>\r\n<ng-snotify></ng-snotify>\r\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -356,7 +356,7 @@ module.exports = "img {\r\n    max-width: 100%;\r\n}"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ngx-spinner></ngx-spinner>\n<img src=\"../../../assets/front.png\">\n"
+module.exports = "<ngx-spinner bdColor=\"rgba(51,51,51,0.8)\"\nsize=\"medium\"\ncolor=\"#fff\"\ntype=\"ball-scale-multiple\">\n<p style=\"font-size: 20px; color: white\">Loading...</p>></ngx-spinner>\n<img src=\"../../../assets/front.png\">\n"
 
 /***/ }),
 
