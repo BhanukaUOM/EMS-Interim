@@ -39,6 +39,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_signup_signup_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/signup/signup.component */ "./src/app/components/signup/signup.component.ts");
 /* harmony import */ var _components_home_home_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/home/home.component */ "./src/app/components/home/home.component.ts");
 /* harmony import */ var _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/dashboard/dashboard.component */ "./src/app/components/dashboard/dashboard.component.ts");
+/* harmony import */ var _services_afterLogin__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./services/afterLogin */ "./src/app/services/afterLogin.ts");
+/* harmony import */ var _services_beforeLogin__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./services/beforeLogin */ "./src/app/services/beforeLogin.ts");
+/* harmony import */ var _components_password_request_reset_request_reset_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/password/request-reset/request-reset.component */ "./src/app/components/password/request-reset/request-reset.component.ts");
+/* harmony import */ var _components_password_response_reset_response_reset_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/password/response-reset/response-reset.component */ "./src/app/components/password/response-reset/response-reset.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -51,14 +55,30 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
+
+
 var appRoutes = [
     {
         path: 'login',
-        component: _components_login_login_component__WEBPACK_IMPORTED_MODULE_2__["LoginComponent"]
+        component: _components_login_login_component__WEBPACK_IMPORTED_MODULE_2__["LoginComponent"],
+        canActivate: [_services_beforeLogin__WEBPACK_IMPORTED_MODULE_7__["BeforeLoginService"]]
+    },
+    {
+        path: 'reset-password',
+        component: _components_password_request_reset_request_reset_component__WEBPACK_IMPORTED_MODULE_8__["RequestResetComponent"],
+        canActivate: [_services_beforeLogin__WEBPACK_IMPORTED_MODULE_7__["BeforeLoginService"]]
+    },
+    {
+        path: 'reset-password-submit',
+        component: _components_password_response_reset_response_reset_component__WEBPACK_IMPORTED_MODULE_9__["ResponseResetComponent"],
+        canActivate: [_services_beforeLogin__WEBPACK_IMPORTED_MODULE_7__["BeforeLoginService"]]
     },
     {
         path: 'signup',
-        component: _components_signup_signup_component__WEBPACK_IMPORTED_MODULE_3__["SignupComponent"]
+        component: _components_signup_signup_component__WEBPACK_IMPORTED_MODULE_3__["SignupComponent"],
+        canActivate: [_services_afterLogin__WEBPACK_IMPORTED_MODULE_6__["AfterLoginService"]]
     },
     {
         path: '',
@@ -66,7 +86,8 @@ var appRoutes = [
     },
     {
         path: 'dashboard',
-        component: _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_5__["DashboardComponent"]
+        component: _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_5__["DashboardComponent"],
+        canActivate: [_services_afterLogin__WEBPACK_IMPORTED_MODULE_6__["AfterLoginService"]]
     }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -105,7 +126,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\r\n\r\n<router-outlet></router-outlet>"
+module.exports = "<app-navbar></app-navbar>\r\n<ng-snotify></ng-snotify>\r\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -159,19 +180,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/navbar/navbar.component */ "./src/app/components/navbar/navbar.component.ts");
-/* harmony import */ var _components_login_login_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/login/login.component */ "./src/app/components/login/login.component.ts");
-/* harmony import */ var _components_signup_signup_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/signup/signup.component */ "./src/app/components/signup/signup.component.ts");
-/* harmony import */ var _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/profile/profile.component */ "./src/app/components/profile/profile.component.ts");
-/* harmony import */ var _components_password_request_reset_request_reset_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/password/request-reset/request-reset.component */ "./src/app/components/password/request-reset/request-reset.component.ts");
-/* harmony import */ var _components_password_response_reset_response_reset_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/password/response-reset/response-reset.component */ "./src/app/components/password/response-reset/response-reset.component.ts");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! .//app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _components_home_home_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/home/home.component */ "./src/app/components/home/home.component.ts");
-/* harmony import */ var _services_api_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./services/api.service */ "./src/app/services/api.service.ts");
-/* harmony import */ var _services_token_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./services/token.service */ "./src/app/services/token.service.ts");
-/* harmony import */ var _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/dashboard/dashboard.component */ "./src/app/components/dashboard/dashboard.component.ts");
-/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var ng_snotify__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ng-snotify */ "./node_modules/ng-snotify/index.js");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/navbar/navbar.component */ "./src/app/components/navbar/navbar.component.ts");
+/* harmony import */ var _components_login_login_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/login/login.component */ "./src/app/components/login/login.component.ts");
+/* harmony import */ var _components_signup_signup_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/signup/signup.component */ "./src/app/components/signup/signup.component.ts");
+/* harmony import */ var _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/profile/profile.component */ "./src/app/components/profile/profile.component.ts");
+/* harmony import */ var _components_password_request_reset_request_reset_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/password/request-reset/request-reset.component */ "./src/app/components/password/request-reset/request-reset.component.ts");
+/* harmony import */ var _components_password_response_reset_response_reset_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/password/response-reset/response-reset.component */ "./src/app/components/password/response-reset/response-reset.component.ts");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! .//app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _components_home_home_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/home/home.component */ "./src/app/components/home/home.component.ts");
+/* harmony import */ var _services_api_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./services/api.service */ "./src/app/services/api.service.ts");
+/* harmony import */ var _services_token_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./services/token.service */ "./src/app/services/token.service.ts");
+/* harmony import */ var _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/dashboard/dashboard.component */ "./src/app/components/dashboard/dashboard.component.ts");
+/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _services_afterLogin__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./services/afterLogin */ "./src/app/services/afterLogin.ts");
+/* harmony import */ var _services_beforeLogin__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./services/beforeLogin */ "./src/app/services/beforeLogin.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -195,34 +219,42 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"],
-                _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_5__["NavbarComponent"],
-                _components_login_login_component__WEBPACK_IMPORTED_MODULE_6__["LoginComponent"],
-                _components_signup_signup_component__WEBPACK_IMPORTED_MODULE_7__["SignupComponent"],
-                _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_8__["ProfileComponent"],
-                _components_password_request_reset_request_reset_component__WEBPACK_IMPORTED_MODULE_9__["RequestResetComponent"],
-                _components_password_response_reset_response_reset_component__WEBPACK_IMPORTED_MODULE_10__["ResponseResetComponent"],
-                _components_home_home_component__WEBPACK_IMPORTED_MODULE_12__["HomeComponent"],
-                _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_15__["DashboardComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"],
+                _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_6__["NavbarComponent"],
+                _components_login_login_component__WEBPACK_IMPORTED_MODULE_7__["LoginComponent"],
+                _components_signup_signup_component__WEBPACK_IMPORTED_MODULE_8__["SignupComponent"],
+                _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_9__["ProfileComponent"],
+                _components_password_request_reset_request_reset_component__WEBPACK_IMPORTED_MODULE_10__["RequestResetComponent"],
+                _components_password_response_reset_response_reset_component__WEBPACK_IMPORTED_MODULE_11__["ResponseResetComponent"],
+                _components_home_home_component__WEBPACK_IMPORTED_MODULE_13__["HomeComponent"],
+                _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_16__["DashboardComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_11__["AppRoutingModule"],
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_12__["AppRoutingModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"]
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
+                ng_snotify__WEBPACK_IMPORTED_MODULE_4__["SnotifyModule"]
             ],
             providers: [
-                _services_api_service__WEBPACK_IMPORTED_MODULE_13__["ApiService"],
-                _services_token_service__WEBPACK_IMPORTED_MODULE_14__["TokenService"],
-                _services_auth_service__WEBPACK_IMPORTED_MODULE_16__["AuthService"]
+                _services_api_service__WEBPACK_IMPORTED_MODULE_14__["ApiService"],
+                _services_token_service__WEBPACK_IMPORTED_MODULE_15__["TokenService"],
+                _services_auth_service__WEBPACK_IMPORTED_MODULE_17__["AuthService"],
+                _services_afterLogin__WEBPACK_IMPORTED_MODULE_18__["AfterLoginService"],
+                _services_beforeLogin__WEBPACK_IMPORTED_MODULE_19__["BeforeLoginService"],
+                { provide: 'SnotifyToastConfig', useValue: ng_snotify__WEBPACK_IMPORTED_MODULE_4__["ToastDefaults"] },
+                ng_snotify__WEBPACK_IMPORTED_MODULE_4__["SnotifyService"]
             ],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -384,7 +416,7 @@ module.exports = ":root {\r\n  --input-padding-x: 1.5rem;\r\n  --input-padding-y
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"body\">\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-sm-9 col-md-7 col-lg-5 mx-auto\">\n        <div class=\"card card-signin my-5\">\n          <div class=\"card-body\">\n            <div class=\"alert alert-danger\" [hidden]=\"!error\">\n              {{ error }}\n            </div>\n            <h5 class=\"card-title text-center\">Sign In</h5>\n            <form class=\"form-signin\" #loginForm=ngForm (ngSubmit)=\"onSubmit()\">\n              <div class=\"form-label-group\">\n                <input type=\"email\" name=\"email\" id=\"inputEmail\" class=\"form-control\" placeholder=\"Email address\" required autofocus [(ngModel)]=\"form.email\">\n                <label for=\"inputEmail\">Email address</label>\n              </div>\n\n              <div class=\"form-label-group\">\n                <input type=\"password\" name=\"password\" id=\"inputPassword\" [(ngModel)]=\"form.password\" class=\"form-control\" placeholder=\"Password\" required>\n                <label for=\"inputPassword\">Password</label>\n              </div>\n\n              <div class=\"custom-control custom-checkbox mb-3\">\n                <input type=\"checkbox\" name=\"remember\" class=\"custom-control-input\" id=\"customCheck1\" [(ngModel)]=\"form.checkbox\">\n                <label class=\"custom-control-label\" for=\"customCheck1\">Remember password</label>\n              </div>\n              <button class=\"btn btn-lg btn-primary btn-block text-uppercase\" type=\"submit\" [disabled]=\"!loginForm.valid\">Sign in</button>\n            </form>\n              <hr class=\"my-4\">\n              <button class=\"btn btn-lg btn-google btn-block text-uppercase\" type=\"submit\"><i class=\"fab fa-google mr-2\"></i> Sign in with Google</button>\n              <button class=\"btn btn-lg btn-facebook btn-block text-uppercase\" type=\"submit\"><i class=\"fab fa-facebook-f mr-2\"></i> Sign in with Facebook</button>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"body\">\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-sm-9 col-md-7 col-lg-5 mx-auto\">\n        <div class=\"card card-signin my-5\">\n          <div class=\"card-body\">\n            <div class=\"alert alert-danger\" [hidden]=\"!error\">\n              {{ error }}\n            </div>\n            <h5 class=\"card-title text-center\">Sign In</h5>\n            <form class=\"form-signin\" #loginForm=ngForm (ngSubmit)=\"onSubmit()\">\n              <div class=\"form-label-group\">\n                <input type=\"email\" name=\"email\" id=\"inputEmail\" class=\"form-control\" placeholder=\"Email address\" required autofocus [(ngModel)]=\"form.email\">\n                <label for=\"inputEmail\">Email address</label>\n              </div>\n\n              <div class=\"form-label-group\">\n                <input type=\"password\" name=\"password\" id=\"inputPassword\" [(ngModel)]=\"form.password\" class=\"form-control\" placeholder=\"Password\" required>\n                <label for=\"inputPassword\">Password</label>\n              </div>\n\n              <div class=\"custom-control custom-checkbox mb-3\">\n                <input type=\"checkbox\" name=\"remember\" class=\"custom-control-input\" id=\"customCheck1\" [(ngModel)]=\"form.checkbox\">\n                <label class=\"custom-control-label\" for=\"customCheck1\">Remember password</label>\n              </div>\n              <button class=\"btn btn-lg btn-primary btn-block text-uppercase\" type=\"submit\" [disabled]=\"!loginForm.valid\">Sign in</button>\n            </form>\n            \n            <p style=\"text-align: right;\"><a [routerLink]=\"['/reset-password']\" routerLinkActive=\"router-link-active\" ><small>Fogot Password?</small></a></p>\n              <hr class=\"my-4\">\n              <button class=\"btn btn-lg btn-google btn-block text-uppercase\" type=\"submit\"><i class=\"fab fa-google mr-2\"></i> Sign in with Google</button>\n              <button class=\"btn btn-lg btn-facebook btn-block text-uppercase\" type=\"submit\"><i class=\"fab fa-facebook-f mr-2\"></i> Sign in with Facebook</button>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -553,7 +585,7 @@ var NavbarComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ":root {\r\n    --input-padding-x: 1.5rem;\r\n    --input-padding-y: 0.75rem;\r\n  }\r\n  \r\n  body {\r\n    background: #9CECFB;\r\n    /* fallback for old browsers */\r\n    /* Chrome 10-25, Safari 5.1-6 */\r\n    background: linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);\r\n    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\r\n  }\r\n  \r\n  .card-signin {\r\n    border: 2px solid #65C7F7;\r\n    border-radius: 1rem;\r\n    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);\r\n  }\r\n  \r\n  .card-signin .card-title {\r\n    margin-bottom: 2rem;\r\n    font-weight: 300;\r\n    font-size: 1.5rem;\r\n  }\r\n  \r\n  .card-signin .card-body {\r\n    padding: 2rem;\r\n  }\r\n  \r\n  .form-signin {\r\n    width: 100%;\r\n  }\r\n  \r\n  .form-signin .btn {\r\n    font-size: 80%;\r\n    border-radius: 5rem;\r\n    letter-spacing: .1rem;\r\n    font-weight: bold;\r\n    padding: 1rem;\r\n    transition: all 0.2s;\r\n  }\r\n  \r\n  .form-label-group {\r\n    position: relative;\r\n    margin-bottom: 1rem;\r\n  }\r\n  \r\n  .form-label-group input {\r\n    border-radius: 2rem;\r\n  }\r\n  \r\n  .form-label-group>input,\r\n  .form-label-group>label {\r\n    padding: 0.75rem 1.5rem;\r\n  }\r\n  \r\n  .form-label-group>label {\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    display: block;\r\n    width: 100%;\r\n    margin-bottom: 0;\r\n    /* Override default `<label>` margin */\r\n    line-height: 1.5;\r\n    color: #495057;\r\n    border: 1px solid transparent;\r\n    border-radius: .25rem;\r\n    transition: all .1s ease-in-out;\r\n  }\r\n  \r\n  .form-label-group input::-webkit-input-placeholder {\r\n    color: transparent;\r\n  }\r\n  \r\n  .form-label-group input::-ms-input-placeholder {\r\n    color: transparent;\r\n  }\r\n  \r\n  .form-label-group input::placeholder {\r\n    color: transparent;\r\n  }\r\n  \r\n  .form-label-group input:not(:placeholder-shown) {\r\n    padding-top: 1.00rem;\r\n    padding-bottom: 0.25rem;\r\n  }\r\n  \r\n  .form-label-group input:not(:placeholder-shown)~label {\r\n    padding-top: 0.25rem;\r\n    padding-bottom: 0.25rem;\r\n    font-size: 12px;\r\n    color: #777;\r\n  }\r\n  \r\n  .btn-google {\r\n    color: white;\r\n    background-color: #ea4335;\r\n  }\r\n  \r\n  .btn-facebook {\r\n    color: white;\r\n    background-color: #3b5998;\r\n  }"
 
 /***/ }),
 
@@ -564,7 +596,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  request-reset works!\n</p>\n"
+module.exports = "<div class=\"body\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-sm-9 col-md-7 col-lg-5 mx-auto\">\n          <div class=\"card card-signin my-5\">\n            <div class=\"card-body\">\n              <div class=\"alert alert-danger\" [hidden]=\"!error\">\n                {{ error }}\n              </div>\n              <h5 class=\"card-title text-center\">Reset Password</h5>\n              <form class=\"form-signin\" #passwordResetForm=ngForm (ngSubmit)=\"onSubmit()\">\n                <div class=\"form-label-group\">\n                  <input type=\"email\" name=\"email\" id=\"inputEmail\" class=\"form-control\" placeholder=\"Enter Email address\" required autofocus [(ngModel)]=\"form.email\">\n                  <label for=\"inputEmail\">Email address</label>\n                </div>\n                <button class=\"btn btn-lg btn-primary btn-block text-uppercase\" type=\"submit\" [disabled]=\"!passwordResetForm.valid\">Reset Password</button>\n              </form>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>"
 
 /***/ }),
 
@@ -579,6 +611,8 @@ module.exports = "<p>\n  request-reset works!\n</p>\n"
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RequestResetComponent", function() { return RequestResetComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_api_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../services/api.service */ "./src/app/services/api.service.ts");
+/* harmony import */ var ng_snotify__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ng-snotify */ "./node_modules/ng-snotify/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -589,10 +623,25 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var RequestResetComponent = /** @class */ (function () {
-    function RequestResetComponent() {
+    function RequestResetComponent(api, notify) {
+        this.api = api;
+        this.notify = notify;
+        this.form = {
+            email: null
+        };
+        this.error = null;
     }
     RequestResetComponent.prototype.ngOnInit = function () {
+    };
+    RequestResetComponent.prototype.onSubmit = function () {
+        var _this = this;
+        return this.api.post('sendPasswordReset', this.form).subscribe(function (data) { return _this.handleResponse(data); }, function (error) { return _this.notify.error(error.error.error); });
+    };
+    RequestResetComponent.prototype.handleResponse = function (data) {
+        this.form.email = null;
     };
     RequestResetComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -600,7 +649,8 @@ var RequestResetComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./request-reset.component.html */ "./src/app/components/password/request-reset/request-reset.component.html"),
             styles: [__webpack_require__(/*! ./request-reset.component.css */ "./src/app/components/password/request-reset/request-reset.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_services_api_service__WEBPACK_IMPORTED_MODULE_1__["ApiService"],
+            ng_snotify__WEBPACK_IMPORTED_MODULE_2__["SnotifyService"]])
     ], RequestResetComponent);
     return RequestResetComponent;
 }());
@@ -753,7 +803,7 @@ module.exports = ":root {\r\n    --input-padding-x: 1.5rem;\r\n    --input-paddi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"body\">\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-sm-9 col-md-7 col-lg-5 mx-auto\">\n        <div class=\"card card-signin my-5\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title text-center\">Register</h5>\n            <form class=\"form-signin\" #registerForm=ngForm (ngSubmit)=\"onSubmit()\">\n              \n                <div class=\"alert alert-danger\" [hidden]=\"!error.email\">\n                    {{ error.email }}\n                  </div>\n                  <div class=\"alert alert-danger\" [hidden]=\"!error.name\">\n                      {{ error.name }}\n                    </div>\n                  <div class=\"alert alert-danger\" [hidden]=\"!error.password\">\n                      {{ error.password }}\n                    </div>\n                <div class=\"form-label-group\">\n                    <input type=\"email\" name=\"email\" id=\"inputEmail\" class=\"form-control\" placeholder=\"Email address\" required [(ngModel)]=\"form.email\" autofocus>\n                    <label for=\"inputEmail\">Email address</label>\n                  </div>\n\n              <div class=\"form-label-group\">\n                <input type=\"name\" name=\"name\" id=\"inputName\" class=\"form-control\" placeholder=\"Name\" [(ngModel)]=\"form.name\" required>\n                <label for=\"inputEmail\">Name</label>\n              </div>\n              \n\n              \n              <div class=\"form-label-group\">\n                <input type=\"password\" name=\"password\" id=\"inputPassword\" [(ngModel)]=\"form.password\" class=\"form-control\" placeholder=\"Password\" required>\n                <label for=\"inputPassword\">Password</label>\n              </div>\n\n              <div class=\"form-label-group\">\n                <input type=\"password\" name=\"password_confirmation\" id=\"inputPasswordConfirm\" [(ngModel)]=\"form.password_confirmation\" class=\"form-control\" placeholder=\"Password\" required>\n                <label for=\"inputPassword\">Confirm Password</label>\n              </div>\n\n              <div class=\"custom-control custom-checkbox mb-3\">\n                <input type=\"checkbox\" name=\"terms\" class=\"custom-control-input\" id=\"customCheck1\" [(ngModel)]=\"form.terms\">\n                <label class=\"custom-control-label\" for=\"customCheck1\">Agree terms and conditions</label>\n              </div>\n              <button class=\"btn btn-lg btn-primary btn-block text-uppercase\" type=\"submit\" [disabled]=\"!registerForm.valid || form.terms==false\">Register</button>\n            </form>\n              <hr class=\"my-4\">\n              <button class=\"btn btn-lg btn-google btn-block text-uppercase\" type=\"submit\"><i class=\"fab fa-google mr-2\"></i> Sign in with Google</button>\n              <button class=\"btn btn-lg btn-facebook btn-block text-uppercase\" type=\"submit\"><i class=\"fab fa-facebook-f mr-2\"></i> Sign in with Facebook</button>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"body\">\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-sm-9 col-md-7 col-lg-5 mx-auto\">\n        <div class=\"card card-signin my-5\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title text-center\">Add new Admin</h5>\n            <form class=\"form-signin\" #registerForm=ngForm (ngSubmit)=\"onSubmit()\">\n              \n                <div class=\"alert alert-danger\" [hidden]=\"!error.email\">\n                    {{ error.email }}\n                  </div>\n                  <div class=\"alert alert-danger\" [hidden]=\"!error.name\">\n                      {{ error.name }}\n                    </div>\n                  <div class=\"alert alert-danger\" [hidden]=\"!error.password\">\n                      {{ error.password }}\n                    </div>\n                <div class=\"form-label-group\">\n                    <input type=\"email\" name=\"email\" id=\"inputEmail\" class=\"form-control\" placeholder=\"Email address\" required [(ngModel)]=\"form.email\" autofocus>\n                    <label for=\"inputEmail\">Email address</label>\n                  </div>\n\n              <div class=\"form-label-group\">\n                <input type=\"name\" name=\"name\" id=\"inputName\" class=\"form-control\" placeholder=\"Name\" [(ngModel)]=\"form.name\" required>\n                <label for=\"inputEmail\">Name</label>\n              </div>\n              \n\n              \n              <div class=\"form-label-group\">\n                <input type=\"password\" name=\"password\" id=\"inputPassword\" [(ngModel)]=\"form.password\" class=\"form-control\" placeholder=\"Password\" required>\n                <label for=\"inputPassword\">Password</label>\n              </div>\n\n              <div class=\"form-label-group\">\n                <input type=\"password\" name=\"password_confirmation\" id=\"inputPasswordConfirm\" [(ngModel)]=\"form.password_confirmation\" class=\"form-control\" placeholder=\"Password\" required>\n                <label for=\"inputPassword\">Confirm Password</label>\n              </div>\n\n              <div class=\"custom-control custom-checkbox mb-3\">\n                <input type=\"checkbox\" name=\"terms\" class=\"custom-control-input\" id=\"customCheck1\" [(ngModel)]=\"form.terms\">\n                <label class=\"custom-control-label\" for=\"customCheck1\">Agree terms and conditions</label>\n              </div>\n              <button class=\"btn btn-lg btn-primary btn-block text-uppercase\" type=\"submit\" [disabled]=\"!registerForm.valid || form.terms==false\">Add</button>\n            </form>\n           </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -823,6 +873,47 @@ var SignupComponent = /** @class */ (function () {
             _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
     ], SignupComponent);
     return SignupComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/afterLogin.ts":
+/*!****************************************!*\
+  !*** ./src/app/services/afterLogin.ts ***!
+  \****************************************/
+/*! exports provided: AfterLoginService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AfterLoginService", function() { return AfterLoginService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _token_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./token.service */ "./src/app/services/token.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var AfterLoginService = /** @class */ (function () {
+    function AfterLoginService(Token) {
+        this.Token = Token;
+    }
+    AfterLoginService.prototype.canActivate = function (route, state) {
+        return this.Token.loggedIn();
+    };
+    AfterLoginService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_token_service__WEBPACK_IMPORTED_MODULE_1__["TokenService"]])
+    ], AfterLoginService);
+    return AfterLoginService;
 }());
 
 
@@ -914,6 +1005,47 @@ var AuthService = /** @class */ (function () {
         __metadata("design:paramtypes", [_token_service__WEBPACK_IMPORTED_MODULE_2__["TokenService"]])
     ], AuthService);
     return AuthService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/beforeLogin.ts":
+/*!*****************************************!*\
+  !*** ./src/app/services/beforeLogin.ts ***!
+  \*****************************************/
+/*! exports provided: BeforeLoginService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BeforeLoginService", function() { return BeforeLoginService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _token_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./token.service */ "./src/app/services/token.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var BeforeLoginService = /** @class */ (function () {
+    function BeforeLoginService(Token) {
+        this.Token = Token;
+    }
+    BeforeLoginService.prototype.canActivate = function (route, state) {
+        return !this.Token.loggedIn();
+    };
+    BeforeLoginService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_token_service__WEBPACK_IMPORTED_MODULE_1__["TokenService"]])
+    ], BeforeLoginService);
+    return BeforeLoginService;
 }());
 
 

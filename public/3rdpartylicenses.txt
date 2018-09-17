@@ -95,6 +95,10 @@ MIT
 MIT
 MIT
 
+ng-snotify@4.3.1
+MIT
+MIT
+
 rxjs@6.3.2
 Apache-2.0
 Apache License
