@@ -766,7 +766,7 @@ var ResponseResetComponent = /** @class */ (function () {
     ResponseResetComponent.prototype.reseterrorHandler = function (error) {
         if (error.error.error)
             this.notify.error(error.error.error, { timeout: 0 });
-        if (error.errors.password)
+        if (error.password)
             this.notify.error(error.password, { timeout: 0 });
     };
     ResponseResetComponent = __decorate([
