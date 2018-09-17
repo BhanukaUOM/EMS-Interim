@@ -469,7 +469,7 @@ var LoginComponent = /** @class */ (function () {
     };
     LoginComponent.prototype.onSubmit = function () {
         var _this = this;
-        return this.api.post('login', this.form).subscribe(function (data) { return _this.tokenHandler(data); }, function (error) { return _this.notify.error(error.error.error); });
+        return this.api.post('login', this.form).subscribe(function (data) { return _this.tokenHandler(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
     };
     LoginComponent.prototype.tokenHandler = function (data) {
         this.notify.info("Login Succesfully", { timeout: 2000 });
@@ -532,6 +532,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/auth.service */ "./src/app/services/auth.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _services_token_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/token.service */ "./src/app/services/token.service.ts");
+/* harmony import */ var ng_snotify__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ng-snotify */ "./node_modules/ng-snotify/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -545,11 +546,13 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var NavbarComponent = /** @class */ (function () {
-    function NavbarComponent(auth, router, token) {
+    function NavbarComponent(auth, router, token, notify) {
         this.auth = auth;
         this.router = router;
         this.token = token;
+        this.notify = notify;
     }
     NavbarComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -559,6 +562,7 @@ var NavbarComponent = /** @class */ (function () {
     NavbarComponent.prototype.logout = function (Event) {
         if (Event === void 0) { Event = MouseEvent; }
         event.preventDefault;
+        this.notify.info("Logout Succesfully", { timeout: 2000 });
         this.token.remove();
         this.auth.changeAuthStatus(false);
         this.router.navigateByUrl('/login');
@@ -571,7 +575,8 @@ var NavbarComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
-            _services_token_service__WEBPACK_IMPORTED_MODULE_3__["TokenService"]])
+            _services_token_service__WEBPACK_IMPORTED_MODULE_3__["TokenService"],
+            ng_snotify__WEBPACK_IMPORTED_MODULE_4__["SnotifyService"]])
     ], NavbarComponent);
     return NavbarComponent;
 }());
