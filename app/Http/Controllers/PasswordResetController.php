@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\ResetPasswordMail;
 
 class PasswordResetController extends Controller
 {
