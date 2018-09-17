@@ -346,7 +346,7 @@ var LoginComponent = /** @class */ (function () {
     };
     LoginComponent.prototype.tokenHandler = function (data) {
         this.token.set(data.access_token);
-        return this.token.loggedIn(data.access_token);
+        console.log(this.token.loggedIn(data.access_token));
     };
     LoginComponent.prototype.errorHandle = function (error) {
         this.error = error.error.error;
