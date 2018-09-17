@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 class PasswordResetController extends Controller
 {
     public function sendEmail(Request $request){
-        if(User::where('email', $request->email)->first()==0){
+        if(!User::where('email', $request->email)->first()){
             return response()->json(
                 ['error' => 'Email not Registered!!'], Response::HTTP_NOT_FOUND
             );
