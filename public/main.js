@@ -472,7 +472,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-dark bg-dark\">\n  <a class=\"navbar-brand text-white\" routerLink=\"\">EMS</a>\n    <div class=\"\">\n        <a class=\"text-white\" routerLink=\"login\" style=\"padding-right: 20px;\" *ngIf=loggedIn>Login</a> \n        <a class=\"text-white\" routerLink=\"logout\" style=\"padding-right: 20px;\" *ngIf=!loggedIn>Logout</a> \n        <!--<a class=\"text-white\" routerLink=\"signup\">Register</a>-->\n    </div>\n</nav>"
+module.exports = "<nav class=\"navbar navbar-dark bg-dark\">\n  <a class=\"navbar-brand text-white\" routerLink=\"\">EMS</a>\n    <div class=\"\">\n        <a class=\"text-white\" routerLink=\"login\" style=\"padding-right: 20px;\" *ngIf=\"loggedIn\">Login</a> \n        <a class=\"text-white\" routerLink=\"logout\" style=\"padding-right: 20px;\" *ngIf=\"!loggedIn\">Logout</a> \n        <a class=\"text-white\" routerLink=\"signup\" *ngIf=\"!loggedIn\">Register</a>\n    </div>\n</nav>"
 
 /***/ }),
 
@@ -506,6 +506,7 @@ var NavbarComponent = /** @class */ (function () {
     NavbarComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.auth.authStatus.subscribe(function (value) { return _this.loggedIn = value; });
+        console.log(this.loggedIn);
     };
     NavbarComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
