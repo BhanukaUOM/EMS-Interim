@@ -760,8 +760,6 @@ var ResponseResetComponent = /** @class */ (function () {
     };
     ResponseResetComponent.prototype.resetHandler = function (data) {
         this.notify.info(data.data, { timeout: 2000 });
-        this.token.set(data);
-        this.router.navigateByUrl('/dashboard');
     };
     ResponseResetComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
