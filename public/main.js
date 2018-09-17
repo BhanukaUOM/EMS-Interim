@@ -638,10 +638,11 @@ var RequestResetComponent = /** @class */ (function () {
     };
     RequestResetComponent.prototype.onSubmit = function () {
         var _this = this;
+        this.notify.info('Wait...', { timeout: 5000 });
         return this.api.post('sendPasswordReset', this.form).subscribe(function (data) { return _this.handleResponse(data); }, function (error) { return _this.notify.error(error.error.error); });
     };
     RequestResetComponent.prototype.handleResponse = function (data) {
-        console.log(data);
+        this.notify.info(data.data, { timeout: 0 });
         this.form.email = null;
     };
     RequestResetComponent = __decorate([
