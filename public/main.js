@@ -767,7 +767,7 @@ var ResponseResetComponent = /** @class */ (function () {
         if (error.error.error)
             this.notify.error(error.error.error, { timeout: 0 });
         if (error.errors.password)
-            this.notify.error(error.errors.password, { timeout: 0 });
+            this.notify.error(error.password, { timeout: 0 });
     };
     ResponseResetComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
