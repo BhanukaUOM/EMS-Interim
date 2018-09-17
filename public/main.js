@@ -371,6 +371,7 @@ module.exports = "<ngx-spinner bdColor=\"rgba(51,51,51,0.8)\"\nsize=\"medium\"\n
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeComponent", function() { return HomeComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var ngx_spinner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ngx-spinner */ "./node_modules/ngx-spinner/fesm5/ngx-spinner.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -381,10 +382,18 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent() {
+    function HomeComponent(spinner) {
+        this.spinner = spinner;
     }
     HomeComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.spinner.show();
+        setTimeout(function () {
+            /** spinner ends after 5 seconds */
+            _this.spinner.hide();
+        }, 5000);
     };
     HomeComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -392,7 +401,7 @@ var HomeComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./home.component.html */ "./src/app/components/home/home.component.html"),
             styles: [__webpack_require__(/*! ./home.component.css */ "./src/app/components/home/home.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [ngx_spinner__WEBPACK_IMPORTED_MODULE_1__["NgxSpinnerService"]])
     ], HomeComponent);
     return HomeComponent;
 }());
@@ -517,7 +526,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-dark bg-dark\">\n  <a class=\"navbar-brand text-white\" routerLink=\"\">EMS</a>\n    <div class=\"\">\n        <a class=\"text-white\" routerLink=\"login\" style=\"padding-right: 20px;\" *ngIf=\"!loggedIn\">Login</a> \n        <a class=\"text-white\" routerLink=\"dashboard\" style=\"padding-right: 20px;\" *ngIf=\"loggedIn\">Dashboard</a>\n        <a class=\"text-white\" href=\"#\" (click)=\"logout($event)\" style=\"padding-right: 20px;\" *ngIf=\"loggedIn\">Logout</a>  \n    </div>\n</nav>"
+module.exports = "<nav class=\"navbar navbar-dark bg-dark\">\n  <a class=\"navbar-brand text-white\" routerLink=\"\">EMS</a>\n    <div class=\"\">\n        <a class=\"text-white\" routerLink=\"login\" style=\"padding-right: 20px;\" *ngIf=\"!loggedIn\">Login</a> \n        <a class=\"text-white\" routerLink=\"dashboard\" style=\"padding-right: 20px;\" *ngIf=\"loggedIn\">Dashboard</a>\n        <a class=\"text-white\" href=\"javascript:void(0)\" (click)=\"logout($event)\" style=\"padding-right: 20px;\" *ngIf=\"loggedIn\">Logout</a>  \n    </div>\n</nav>"
 
 /***/ }),
 
