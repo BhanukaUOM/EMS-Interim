@@ -1,0 +1,11 @@
+#Set the zesle-php71 package as the default PHP programming language.
+<IfModule mime_module>
+  AddType application/x-httpd-zesle-php71 .php .php7 .phtml
+</IfModule>
+# php
+Options +FollowSymLinks
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [L]
