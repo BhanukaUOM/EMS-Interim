@@ -756,18 +756,12 @@ var ResponseResetComponent = /** @class */ (function () {
     };
     ResponseResetComponent.prototype.onSubmit = function () {
         var _this = this;
-        return this.api.post('responsePasswordReset', this.form).subscribe(function (data) { return _this.resetHandler(data); }, function (error) { return _this.reseterrorHandler(error); });
+        return this.api.post('responsePasswordReset', this.form).subscribe(function (data) { return _this.resetHandler(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
     };
     ResponseResetComponent.prototype.resetHandler = function (data) {
         this.notify.info(data.data, { timeout: 2000 });
         this.token.remove();
         this.router.navigateByUrl('/login');
-    };
-    ResponseResetComponent.prototype.reseterrorHandler = function (error) {
-        if (error.error.error)
-            this.notify.error(error.error.error, { timeout: 0 });
-        if (error.password)
-            this.notify.error(error.password, { timeout: 0 });
     };
     ResponseResetComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
