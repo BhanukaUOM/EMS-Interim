@@ -409,14 +409,13 @@ var LoginComponent = /** @class */ (function () {
     }
     LoginComponent.prototype.ngOnInit = function () {
         console.log(JSON.parse(atob(this.token.get().split('.')[1])));
+        console.log(this.token.getUser());
     };
     LoginComponent.prototype.onSubmit = function () {
         var _this = this;
         return this.api.post('login', this.form).subscribe(function (data) { return _this.tokenHandler(data); }, function (error) { return _this.errorHandle(error); });
     };
     LoginComponent.prototype.tokenHandler = function (data) {
-        this.token.set(data.access_token);
-        console.log(data);
         this.router.navigateByUrl('/dashboard');
     };
     LoginComponent.prototype.errorHandle = function (error) {
@@ -846,15 +845,20 @@ var TokenService = /** @class */ (function () {
         };
     }
     TokenService.prototype.set = function (token) {
-        localStorage.setItem('token', token);
+        localStorage.setItem('token', token.access_token);
+        localStorage.setItem('user', token.user);
     };
     TokenService.prototype.get = function () {
         return localStorage.getItem('token');
     };
+    TokenService.prototype.getUser = function () {
+        return localStorage.getItem('user');
+    };
     TokenService.prototype.remove = function () {
         localStorage.removeItem('token');
     };
-    TokenService.prototype.loggedIn = function (token) {
+    TokenService.prototype.loggedIn = function () {
+        var token = this.get();
         if (token) {
             var check = JSON.parse(atob(token.split('.')[1]));
             if (check) {
