@@ -414,8 +414,6 @@ var LoginComponent = /** @class */ (function () {
         this.error = null;
     }
     LoginComponent.prototype.ngOnInit = function () {
-        console.log(JSON.parse(atob(this.token.get().split('.')[1])));
-        console.log(this.token.getUser());
     };
     LoginComponent.prototype.onSubmit = function () {
         var _this = this;
@@ -731,6 +729,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignupComponent", function() { return SignupComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _services_api_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/api.service */ "./src/app/services/api.service.ts");
+/* harmony import */ var _services_token_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/token.service */ "./src/app/services/token.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -742,9 +742,13 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
+
 var SignupComponent = /** @class */ (function () {
-    function SignupComponent(api) {
+    function SignupComponent(api, token, router) {
         this.api = api;
+        this.token = token;
+        this.router = router;
         this.form = {
             name: null,
             email: null,
@@ -759,7 +763,11 @@ var SignupComponent = /** @class */ (function () {
     };
     SignupComponent.prototype.onSubmit = function () {
         var _this = this;
-        return this.api.post('signup', this.form).subscribe(function (data) { return console.log(data); }, function (error) { return _this.errorHandle(error); });
+        return this.api.post('signup', this.form).subscribe(function (data) { return _this.tokenHandler(data); }, function (error) { return _this.errorHandle(error); });
+    };
+    SignupComponent.prototype.tokenHandler = function (data) {
+        this.token.set(data);
+        this.router.navigateByUrl('/dashboard');
     };
     SignupComponent.prototype.errorHandle = function (error) {
         this.error = error.error.errors;
@@ -770,7 +778,9 @@ var SignupComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./signup.component.html */ "./src/app/components/signup/signup.component.html"),
             styles: [__webpack_require__(/*! ./signup.component.css */ "./src/app/components/signup/signup.component.css")]
         }),
-        __metadata("design:paramtypes", [_services_api_service__WEBPACK_IMPORTED_MODULE_1__["ApiService"]])
+        __metadata("design:paramtypes", [_services_api_service__WEBPACK_IMPORTED_MODULE_1__["ApiService"],
+            _services_token_service__WEBPACK_IMPORTED_MODULE_2__["TokenService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
     ], SignupComponent);
     return SignupComponent;
 }());
