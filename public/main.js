@@ -408,9 +408,7 @@ var LoginComponent = /** @class */ (function () {
         this.error = null;
     }
     LoginComponent.prototype.ngOnInit = function () {
-        console.log(JSON.parse(atob(this.token.get().split('.')[0])));
         console.log(JSON.parse(atob(this.token.get().split('.')[1])));
-        console.log(JSON.parse(atob(this.token.get().split('.')[2])));
     };
     LoginComponent.prototype.onSubmit = function () {
         var _this = this;
@@ -418,6 +416,7 @@ var LoginComponent = /** @class */ (function () {
     };
     LoginComponent.prototype.tokenHandler = function (data) {
         this.token.set(data.access_token);
+        console.log(data);
         this.router.navigateByUrl('/dashboard');
     };
     LoginComponent.prototype.errorHandle = function (error) {
