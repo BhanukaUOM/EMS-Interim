@@ -126,7 +126,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\r\n<ng-snotify></ng-snotify>\r\n<router-outlet></router-outlet>"
+module.exports = "<ngx-spinner></ngx-spinner>\r\n<app-navbar></app-navbar>\r\n<ng-snotify></ng-snotify>\r\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -150,7 +150,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
-        this.title = 'frontend';
+        this.title = 'EMS';
     }
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -181,21 +181,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var ng_snotify__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ng-snotify */ "./node_modules/ng-snotify/index.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/navbar/navbar.component */ "./src/app/components/navbar/navbar.component.ts");
-/* harmony import */ var _components_login_login_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/login/login.component */ "./src/app/components/login/login.component.ts");
-/* harmony import */ var _components_signup_signup_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/signup/signup.component */ "./src/app/components/signup/signup.component.ts");
-/* harmony import */ var _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/profile/profile.component */ "./src/app/components/profile/profile.component.ts");
-/* harmony import */ var _components_password_request_reset_request_reset_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/password/request-reset/request-reset.component */ "./src/app/components/password/request-reset/request-reset.component.ts");
-/* harmony import */ var _components_password_response_reset_response_reset_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/password/response-reset/response-reset.component */ "./src/app/components/password/response-reset/response-reset.component.ts");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! .//app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _components_home_home_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/home/home.component */ "./src/app/components/home/home.component.ts");
-/* harmony import */ var _services_api_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./services/api.service */ "./src/app/services/api.service.ts");
-/* harmony import */ var _services_token_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./services/token.service */ "./src/app/services/token.service.ts");
-/* harmony import */ var _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/dashboard/dashboard.component */ "./src/app/components/dashboard/dashboard.component.ts");
-/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./services/auth.service */ "./src/app/services/auth.service.ts");
-/* harmony import */ var _services_afterLogin__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./services/afterLogin */ "./src/app/services/afterLogin.ts");
-/* harmony import */ var _services_beforeLogin__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./services/beforeLogin */ "./src/app/services/beforeLogin.ts");
+/* harmony import */ var ngx_spinner__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ngx-spinner */ "./node_modules/ngx-spinner/fesm5/ngx-spinner.js");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/navbar/navbar.component */ "./src/app/components/navbar/navbar.component.ts");
+/* harmony import */ var _components_login_login_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/login/login.component */ "./src/app/components/login/login.component.ts");
+/* harmony import */ var _components_signup_signup_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/signup/signup.component */ "./src/app/components/signup/signup.component.ts");
+/* harmony import */ var _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/profile/profile.component */ "./src/app/components/profile/profile.component.ts");
+/* harmony import */ var _components_password_request_reset_request_reset_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/password/request-reset/request-reset.component */ "./src/app/components/password/request-reset/request-reset.component.ts");
+/* harmony import */ var _components_password_response_reset_response_reset_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/password/response-reset/response-reset.component */ "./src/app/components/password/response-reset/response-reset.component.ts");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! .//app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _components_home_home_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/home/home.component */ "./src/app/components/home/home.component.ts");
+/* harmony import */ var _services_api_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./services/api.service */ "./src/app/services/api.service.ts");
+/* harmony import */ var _services_token_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./services/token.service */ "./src/app/services/token.service.ts");
+/* harmony import */ var _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/dashboard/dashboard.component */ "./src/app/components/dashboard/dashboard.component.ts");
+/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _services_afterLogin__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./services/afterLogin */ "./src/app/services/afterLogin.ts");
+/* harmony import */ var _services_beforeLogin__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./services/beforeLogin */ "./src/app/services/beforeLogin.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -222,39 +223,41 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"],
-                _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_6__["NavbarComponent"],
-                _components_login_login_component__WEBPACK_IMPORTED_MODULE_7__["LoginComponent"],
-                _components_signup_signup_component__WEBPACK_IMPORTED_MODULE_8__["SignupComponent"],
-                _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_9__["ProfileComponent"],
-                _components_password_request_reset_request_reset_component__WEBPACK_IMPORTED_MODULE_10__["RequestResetComponent"],
-                _components_password_response_reset_response_reset_component__WEBPACK_IMPORTED_MODULE_11__["ResponseResetComponent"],
-                _components_home_home_component__WEBPACK_IMPORTED_MODULE_13__["HomeComponent"],
-                _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_16__["DashboardComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"],
+                _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_7__["NavbarComponent"],
+                _components_login_login_component__WEBPACK_IMPORTED_MODULE_8__["LoginComponent"],
+                _components_signup_signup_component__WEBPACK_IMPORTED_MODULE_9__["SignupComponent"],
+                _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_10__["ProfileComponent"],
+                _components_password_request_reset_request_reset_component__WEBPACK_IMPORTED_MODULE_11__["RequestResetComponent"],
+                _components_password_response_reset_response_reset_component__WEBPACK_IMPORTED_MODULE_12__["ResponseResetComponent"],
+                _components_home_home_component__WEBPACK_IMPORTED_MODULE_14__["HomeComponent"],
+                _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_17__["DashboardComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_12__["AppRoutingModule"],
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_13__["AppRoutingModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
-                ng_snotify__WEBPACK_IMPORTED_MODULE_4__["SnotifyModule"]
+                ng_snotify__WEBPACK_IMPORTED_MODULE_4__["SnotifyModule"],
+                ngx_spinner__WEBPACK_IMPORTED_MODULE_5__["NgxSpinnerModule"]
             ],
             providers: [
-                _services_api_service__WEBPACK_IMPORTED_MODULE_14__["ApiService"],
-                _services_token_service__WEBPACK_IMPORTED_MODULE_15__["TokenService"],
-                _services_auth_service__WEBPACK_IMPORTED_MODULE_17__["AuthService"],
-                _services_afterLogin__WEBPACK_IMPORTED_MODULE_18__["AfterLoginService"],
-                _services_beforeLogin__WEBPACK_IMPORTED_MODULE_19__["BeforeLoginService"],
+                _services_api_service__WEBPACK_IMPORTED_MODULE_15__["ApiService"],
+                _services_token_service__WEBPACK_IMPORTED_MODULE_16__["TokenService"],
+                _services_auth_service__WEBPACK_IMPORTED_MODULE_18__["AuthService"],
+                _services_afterLogin__WEBPACK_IMPORTED_MODULE_19__["AfterLoginService"],
+                _services_beforeLogin__WEBPACK_IMPORTED_MODULE_20__["BeforeLoginService"],
                 { provide: 'SnotifyToastConfig', useValue: ng_snotify__WEBPACK_IMPORTED_MODULE_4__["ToastDefaults"] },
                 ng_snotify__WEBPACK_IMPORTED_MODULE_4__["SnotifyService"]
             ],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -353,7 +356,7 @@ module.exports = "img {\r\n    max-width: 100%;\r\n}"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<img src=\"../../../assets/front.png\">\n"
+module.exports = "<ngx-spinner></ngx-spinner>\n<img src=\"../../../assets/front.png\">\n"
 
 /***/ }),
 
