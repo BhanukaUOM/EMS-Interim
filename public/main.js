@@ -769,8 +769,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var TokenService = /** @class */ (function () {
     function TokenService() {
         this.iss = {
-            login: 'https://ems.aladinlabs.com/login',
-            signup: 'https://ems.aladinlabs.com/signup'
+            login: 'https://ems.aladinlabs.com/api/login',
+            signup: 'https://ems.aladinlabs.com/api/signup'
         };
     }
     TokenService.prototype.set = function (token) {
@@ -785,7 +785,10 @@ var TokenService = /** @class */ (function () {
     TokenService.prototype.loggedIn = function (token) {
         if (token) {
             var check = JSON.parse(atob(token.split('.')[1]));
-            return check;
+            if (check) {
+                return Object.values(this.iss).indexOf(check.iss) >= 0 ? true : false;
+            }
+            return false;
         }
         return false;
     };
