@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\ResetPasswordMail;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request\ChangePasswordRequest;
+use App\Http\Requests\ChangePasswordRequest;
 
 class PasswordResetController extends Controller
 {
