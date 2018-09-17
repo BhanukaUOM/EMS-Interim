@@ -435,6 +435,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_token_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/token.service */ "./src/app/services/token.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var ng_snotify__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ng-snotify */ "./node_modules/ng-snotify/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -449,12 +450,14 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(api, token, router, auth) {
+    function LoginComponent(api, token, router, auth, notify) {
         this.api = api;
         this.token = token;
         this.router = router;
         this.auth = auth;
+        this.notify = notify;
         this.form = {
             email: null,
             password: null,
@@ -466,15 +469,13 @@ var LoginComponent = /** @class */ (function () {
     };
     LoginComponent.prototype.onSubmit = function () {
         var _this = this;
-        return this.api.post('login', this.form).subscribe(function (data) { return _this.tokenHandler(data); }, function (error) { return _this.errorHandle(error); });
+        return this.api.post('login', this.form).subscribe(function (data) { return _this.tokenHandler(data); }, function (error) { return _this.notify.error(error.error.error); });
     };
     LoginComponent.prototype.tokenHandler = function (data) {
+        this.notify.info("Login Succesfully", { timeout: 2000 });
         this.token.set(data);
         this.auth.changeAuthStatus(true);
         this.router.navigateByUrl('/dashboard');
-    };
-    LoginComponent.prototype.errorHandle = function (error) {
-        this.error = error.error.error;
     };
     LoginComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -485,7 +486,8 @@ var LoginComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [_services_api_service__WEBPACK_IMPORTED_MODULE_1__["ApiService"],
             _services_token_service__WEBPACK_IMPORTED_MODULE_2__["TokenService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
-            _services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]])
+            _services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"],
+            ng_snotify__WEBPACK_IMPORTED_MODULE_5__["SnotifyService"]])
     ], LoginComponent);
     return LoginComponent;
 }());
@@ -823,6 +825,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_api_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/api.service */ "./src/app/services/api.service.ts");
 /* harmony import */ var _services_token_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/token.service */ "./src/app/services/token.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var ng_snotify__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ng-snotify */ "./node_modules/ng-snotify/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -836,11 +839,13 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var SignupComponent = /** @class */ (function () {
-    function SignupComponent(api, token, router) {
+    function SignupComponent(api, token, router, notify) {
         this.api = api;
         this.token = token;
         this.router = router;
+        this.notify = notify;
         this.form = {
             name: null,
             email: null,
@@ -858,6 +863,7 @@ var SignupComponent = /** @class */ (function () {
         return this.api.post('signup', this.form).subscribe(function (data) { return _this.tokenHandler(data); }, function (error) { return _this.errorHandle(error); });
     };
     SignupComponent.prototype.tokenHandler = function (data) {
+        this.notify.info("Added Succesfully", { timeout: 2000 });
         this.token.set(data);
         this.router.navigateByUrl('/dashboard');
     };
@@ -872,7 +878,8 @@ var SignupComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [_services_api_service__WEBPACK_IMPORTED_MODULE_1__["ApiService"],
             _services_token_service__WEBPACK_IMPORTED_MODULE_2__["TokenService"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
+            ng_snotify__WEBPACK_IMPORTED_MODULE_4__["SnotifyService"]])
     ], SignupComponent);
     return SignupComponent;
 }());
