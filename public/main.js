@@ -641,6 +641,7 @@ var RequestResetComponent = /** @class */ (function () {
         return this.api.post('sendPasswordReset', this.form).subscribe(function (data) { return _this.handleResponse(data); }, function (error) { return _this.notify.error(error.error.error); });
     };
     RequestResetComponent.prototype.handleResponse = function (data) {
+        console.log(data);
         this.form.email = null;
     };
     RequestResetComponent = __decorate([
