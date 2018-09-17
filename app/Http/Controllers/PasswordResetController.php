@@ -36,8 +36,8 @@ class PasswordResetController extends Controller
         }
     }
 
-    public function reset(Request $request){
-        return 'a';
+    public function reset(ChangePasswordRequest $request){
+        //return 'a';
         if(DB::table('password_resets')->where(['email' => $request->email,'token' =>$request->resetToken])->count()> 0){
             $user = User::whereEmail($request->email)->first();
             $user->update(['password'=>$request->password]);
