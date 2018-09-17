@@ -250,7 +250,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  dashboard works!\n</p>\n\n{{ user.role }}\n"
+module.exports = "<div class=\"container\">\n  <a class=\"text-white btn btn-info\" routerLink=\"signup\">Add New Admin</a> \n</div>\n"
 
 /***/ }),
 
@@ -283,7 +283,7 @@ var DashboardComponent = /** @class */ (function () {
         this.user = null;
     }
     DashboardComponent.prototype.ngOnInit = function () {
-        this.user = this.token.getUser;
+        this.user = this.token.getUser();
         console.log(this.user);
         console.log(this.user.role);
         console.log(this.user.email);
@@ -480,7 +480,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-dark bg-dark\">\n  <a class=\"navbar-brand text-white\" routerLink=\"\">EMS</a>\n    <div class=\"\">\n        <a class=\"text-white\" routerLink=\"login\" style=\"padding-right: 20px;\" *ngIf=\"!loggedIn\">Login</a> \n        <a class=\"text-white\" href=\"#\" (click)=\"logout($event)\" style=\"padding-right: 20px;\" *ngIf=\"loggedIn\">Logout</a> \n        <a class=\"text-white\" routerLink=\"signup\" *ngIf=\"loggedIn\">Register</a> \n    </div>\n</nav>"
+module.exports = "<nav class=\"navbar navbar-dark bg-dark\">\n  <a class=\"navbar-brand text-white\" routerLink=\"\">EMS</a>\n    <div class=\"\">\n        <a class=\"text-white\" routerLink=\"login\" style=\"padding-right: 20px;\" *ngIf=\"!loggedIn\">Login</a> \n        <a class=\"text-white\" href=\"#\" (click)=\"logout($event)\" style=\"padding-right: 20px;\" *ngIf=\"loggedIn\">Logout</a> \n    </div>\n</nav>"
 
 /***/ }),
 
@@ -960,6 +960,7 @@ var TokenService = /** @class */ (function () {
     };
     TokenService.prototype.remove = function () {
         localStorage.removeItem('token');
+        localStorage.removeItem('user');
     };
     TokenService.prototype.loggedIn = function () {
         var token = this.get();
