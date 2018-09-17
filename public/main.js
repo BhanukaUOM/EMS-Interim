@@ -163,12 +163,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! .//app-routing.module */ "./src/app/app-routing.module.ts");
 /* harmony import */ var _components_home_home_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/home/home.component */ "./src/app/components/home/home.component.ts");
 /* harmony import */ var _services_api_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./services/api.service */ "./src/app/services/api.service.ts");
+/* harmony import */ var _services_token_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./services/token.service */ "./src/app/services/token.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -204,7 +206,7 @@ var AppModule = /** @class */ (function () {
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"]
             ],
-            providers: [_services_api_service__WEBPACK_IMPORTED_MODULE_13__["ApiService"]],
+            providers: [_services_api_service__WEBPACK_IMPORTED_MODULE_13__["ApiService"], _services_token_service__WEBPACK_IMPORTED_MODULE_14__["TokenService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
         })
     ], AppModule);
@@ -312,6 +314,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginComponent", function() { return LoginComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _services_api_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/api.service */ "./src/app/services/api.service.ts");
+/* harmony import */ var _services_token_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/token.service */ "./src/app/services/token.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -323,9 +326,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(api) {
+    function LoginComponent(api, token) {
         this.api = api;
+        this.token = token;
         this.form = {
             email: null,
             password: null,
@@ -337,7 +342,11 @@ var LoginComponent = /** @class */ (function () {
     };
     LoginComponent.prototype.onSubmit = function () {
         var _this = this;
-        return this.api.post('login', this.form).subscribe(function (data) { return console.log(data); }, function (error) { return _this.errorHandle(error); });
+        return this.api.post('login', this.form).subscribe(function (data) { return _this.tokenHandler(data); }, function (error) { return _this.errorHandle(error); });
+    };
+    LoginComponent.prototype.tokenHandler = function (data) {
+        this.token.set(data.access_token);
+        return this.token.loggedIn(data.access_token);
     };
     LoginComponent.prototype.errorHandle = function (error) {
         this.error = error.error.error;
@@ -348,7 +357,8 @@ var LoginComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./login.component.html */ "./src/app/components/login/login.component.html"),
             styles: [__webpack_require__(/*! ./login.component.css */ "./src/app/components/login/login.component.css")]
         }),
-        __metadata("design:paramtypes", [_services_api_service__WEBPACK_IMPORTED_MODULE_1__["ApiService"]])
+        __metadata("design:paramtypes", [_services_api_service__WEBPACK_IMPORTED_MODULE_1__["ApiService"],
+            _services_token_service__WEBPACK_IMPORTED_MODULE_2__["TokenService"]])
     ], LoginComponent);
     return LoginComponent;
 }());
@@ -375,7 +385,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-dark bg-dark\">\n  <a class=\"navbar-brand text-white\" routerLink=\"\">EMS</a>\n    <div class=\"\">\n        <a class=\"text-white\" routerLink=\"login\" style=\"padding-right: 20px;\">Login</a> \n        <a class=\"text-white\" routerLink=\"signup\">Register</a>\n    </div>\n</nav>"
+module.exports = "<nav class=\"navbar navbar-dark bg-dark\">\n  <a class=\"navbar-brand text-white\" routerLink=\"\">EMS</a>\n    <div class=\"\">\n        <a class=\"text-white\" routerLink=\"login\" style=\"padding-right: 20px;\">Login</a> \n        <!--<a class=\"text-white\" routerLink=\"signup\">Register</a>-->\n    </div>\n</nav>"
 
 /***/ }),
 
@@ -729,6 +739,66 @@ var ApiService = /** @class */ (function () {
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], ApiService);
     return ApiService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/token.service.ts":
+/*!*******************************************!*\
+  !*** ./src/app/services/token.service.ts ***!
+  \*******************************************/
+/*! exports provided: TokenService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TokenService", function() { return TokenService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var TokenService = /** @class */ (function () {
+    function TokenService() {
+        this.iss = {
+            login: 'https://ems.aladinlabs.com/login',
+            signup: 'https://ems.aladinlabs.com/signup'
+        };
+    }
+    TokenService.prototype.set = function (token) {
+        localStorage.setItem('token', token);
+    };
+    TokenService.prototype.get = function () {
+        return localStorage.getItem('token');
+    };
+    TokenService.prototype.remove = function () {
+        localStorage.removeItem('token');
+    };
+    TokenService.prototype.loggedIn = function (token) {
+        if (token) {
+            var check = JSON.parse(atob(token.split('.')[1]));
+            if (check) {
+                return Object.values(this.iss).indexOf(check.iss) >= 0 ? true : false;
+            }
+            return false;
+        }
+        return false;
+    };
+    TokenService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [])
+    ], TokenService);
+    return TokenService;
 }());
 
 
