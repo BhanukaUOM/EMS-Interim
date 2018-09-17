@@ -18,12 +18,12 @@ class PasswordResetController extends Controller
                 ['error' => 'Email not Registered!!'], Response::HTTP_NOT_FOUND
             );
         } else {
-            if(DB::table('password_resets')->where('email', $email)->first())
-                $token = DB::table('password_resets')->where('email', $email)->first()->token;
+            if(DB::table('password_resets')->where('email', $request->email)->first())
+                $token = DB::table('password_resets')->where('email', $request->email)->first()->token;
             else {
                 $token = str_random(60);
                 DB::table('password_resets')->insert([
-                    'email' => $email,
+                    'email' => $request->email,
                     'token' => $token,
                     'created_at' => Carbon::now()
                 ]);
