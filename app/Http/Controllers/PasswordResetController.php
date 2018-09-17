@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Controllers\Mail;
 
 class PasswordResetController extends Controller
 {
