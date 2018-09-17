@@ -41,7 +41,7 @@ class PasswordResetController extends Controller
         if(DB::table('password_resets')->where(['email' => $request->email,'token' =>$request->resetToken])->count()> 0){
             $user = User::whereEmail($request->email)->first();
             $user->update(['password'=>$request->password]);
-            $this->getPasswordResetTableRow($request)->delete();
+            $this->DB::table('password_resets')->where(['email' => $request->email,'token' =>$request->delete()]);
             return response()->json(['data'=>'Password Successfully Changed'],Response::HTTP_CREATED);
         } else {
             return response()->json(['error' => 'Token or Email is incorrect'],Response::HTTP_UNPROCESSABLE_ENTITY);
