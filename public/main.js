@@ -785,10 +785,7 @@ var TokenService = /** @class */ (function () {
     TokenService.prototype.loggedIn = function (token) {
         if (token) {
             var check = JSON.parse(atob(token.split('.')[1]));
-            if (check) {
-                return Object.values(this.iss).indexOf(check.iss) >= 0 ? true : false;
-            }
-            return false;
+            return check;
         }
         return false;
     };
