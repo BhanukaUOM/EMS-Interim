@@ -7,6 +7,8 @@ use App\User;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ResetPasswordMail;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class PasswordResetController extends Controller
 {
@@ -16,7 +18,17 @@ class PasswordResetController extends Controller
                 ['error' => 'Email not Registered!!'], Response::HTTP_NOT_FOUND
             );
         } else {
-            Mail::to($request->email)->send(new ResetPasswordMail);
+            if(DB::table('password_resets')->where('email', $email)->first())
+                $token = DB::table('password_resets')->where('email', $email)->first()->token;
+            else {
+                $token = str_random(60);
+                DB::table('password_resets')->insert([
+                    'email' => $email,
+                    'token' => $token,
+                    'created_at' => Carbon::now()
+                ]);
+            }
+            Mail::to($request->email)->send(new ResetPasswordMail($token));
             return response()->json(
                 ['data' => 'Reset email sent sucessfully!! \nPlease check mail inbox.'], Response::HTTP_OK
             );
