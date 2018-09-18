@@ -14,9 +14,9 @@ Route::group([
     Route::post('sendPasswordReset', 'PasswordResetController@sendEmail');
     Route::post('responsePasswordReset', 'PasswordResetController@reset');
 
-    Route::get('{any}', function () {
-        return 'Unortharized!';
-    });
+    //Route::get('{any}', function () {
+      //  return 'Unortharized!';
+    //});
 
-    //Route::get('login', 'AuthController@login');
+    Route::get('login', 'AuthController@login');
 });
