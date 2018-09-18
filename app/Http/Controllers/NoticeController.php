@@ -8,6 +8,7 @@ use App\readstatus;
 use App\User;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\DB;
 
 class NoticeController extends Controller
 {
@@ -20,7 +21,8 @@ class NoticeController extends Controller
                 return response()->json(['error' => 'Email incorrect'],Response::HTTP_UNPROCESSABLE_ENTITY);
             $role = $user->role;
             $id = $user->id;
-            return DB::select('select * from notice, readstatus  where readstatus.userId = ?', $id);
+            //return DB::select('select * from notice, readstatus  where readstatus.userId = ?', $id);
+            return DB::select('select * from notice');
         } else {
             return response()->json(['error' => 'Token incorrect'],Response::HTTP_UNPROCESSABLE_ENTITY);
         }
