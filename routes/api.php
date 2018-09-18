@@ -18,6 +18,7 @@ Route::group([
     //Notice
     Route::get('notice/get', 'NoticeController@get');
     Route::get('notice/add', 'NoticeController@add');
+    Route::get('notice/update', 'NoticeController@update');
 
     Route::get('{any}', function () {
         return 'Unortharized!';
