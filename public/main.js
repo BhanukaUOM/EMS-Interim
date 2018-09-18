@@ -318,7 +318,7 @@ var DashboardComponent = /** @class */ (function () {
         this.user = null;
     }
     DashboardComponent.prototype.ngOnInit = function () {
-        this.user = this.token.getUser();
+        this.user = JSON.parse(this.token.getUser());
         console.log(this.user);
         console.log(this.user.role);
         console.log(this.user.email);
@@ -372,7 +372,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeComponent", function() { return HomeComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var ngx_spinner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ngx-spinner */ "./node_modules/ngx-spinner/fesm5/ngx-spinner.js");
-/* harmony import */ var _services_token_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/token.service */ "./src/app/services/token.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -384,11 +383,9 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
-
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent(spinner, token) {
+    function HomeComponent(spinner) {
         this.spinner = spinner;
-        this.token = token;
         this.name = null;
     }
     HomeComponent.prototype.ngOnInit = function () {
@@ -398,7 +395,6 @@ var HomeComponent = /** @class */ (function () {
             /** spinner ends after 5 seconds */
             _this.spinner.hide();
         }, 1000);
-        this.name = JSON.parse(this.token.getUser()).email;
     };
     HomeComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -406,8 +402,7 @@ var HomeComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./home.component.html */ "./src/app/components/home/home.component.html"),
             styles: [__webpack_require__(/*! ./home.component.css */ "./src/app/components/home/home.component.css")]
         }),
-        __metadata("design:paramtypes", [ngx_spinner__WEBPACK_IMPORTED_MODULE_1__["NgxSpinnerService"],
-            _services_token_service__WEBPACK_IMPORTED_MODULE_2__["TokenService"]])
+        __metadata("design:paramtypes", [ngx_spinner__WEBPACK_IMPORTED_MODULE_1__["NgxSpinnerService"]])
     ], HomeComponent);
     return HomeComponent;
 }());
