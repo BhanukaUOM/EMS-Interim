@@ -285,7 +285,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\" style=\"margin-top: 30px;\">\n  <a class=\"text-white btn btn-info\" routerLink=\"/signup\">Add New User</a> \n</div>\n"
+module.exports = "<div class=\"container\" style=\"margin-top: 30px;\">\n  <a class=\"text-white btn btn-info\" routerLink=\"/signup\" *ngIf=\"role==SuperAdmin\">Add New User</a> \n</div>\n"
 
 /***/ }),
 
@@ -316,12 +316,11 @@ var DashboardComponent = /** @class */ (function () {
     function DashboardComponent(token) {
         this.token = token;
         this.user = null;
+        this.role = null;
     }
     DashboardComponent.prototype.ngOnInit = function () {
         this.user = JSON.parse(this.token.getUser());
-        console.log(this.user);
-        console.log(this.user.role);
-        console.log(this.user.email);
+        this.role = this.user.role;
     };
     DashboardComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
