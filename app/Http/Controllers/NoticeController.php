@@ -17,7 +17,7 @@ class NoticeController extends Controller
         //return JWTAuth::getPayload($token)->toArray();
         try {
             // attempt to verify the credentials and create a token for the user
-            //$token = JWTAuth::getToken();
+            $token = JWTAuth::getToken();
             $apy = JWTAuth::getPayload($token)->toArray();
         } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
     
