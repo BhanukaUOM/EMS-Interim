@@ -43,12 +43,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_beforeLogin__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./services/beforeLogin */ "./src/app/services/beforeLogin.ts");
 /* harmony import */ var _components_password_request_reset_request_reset_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/password/request-reset/request-reset.component */ "./src/app/components/password/request-reset/request-reset.component.ts");
 /* harmony import */ var _components_password_response_reset_response_reset_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/password/response-reset/response-reset.component */ "./src/app/components/password/response-reset/response-reset.component.ts");
+/* harmony import */ var _services_is_company_admin_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./services/is-company-admin.service */ "./src/app/services/is-company-admin.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -78,12 +80,11 @@ var appRoutes = [
     {
         path: 'signup',
         component: _components_signup_signup_component__WEBPACK_IMPORTED_MODULE_3__["SignupComponent"],
-        canActivate: [_services_afterLogin__WEBPACK_IMPORTED_MODULE_6__["AfterLoginService"]]
+        canActivate: [_services_is_company_admin_service__WEBPACK_IMPORTED_MODULE_10__["IsCompanyAdminService"]]
     },
     {
         path: '',
-        component: _components_home_home_component__WEBPACK_IMPORTED_MODULE_4__["HomeComponent"],
-        canActivate: [_services_afterLogin__WEBPACK_IMPORTED_MODULE_6__["AfterLoginService"], _services_beforeLogin__WEBPACK_IMPORTED_MODULE_7__["BeforeLoginService"]]
+        component: _components_home_home_component__WEBPACK_IMPORTED_MODULE_4__["HomeComponent"]
     },
     {
         path: 'dashboard',
@@ -1113,6 +1114,49 @@ var BeforeLoginService = /** @class */ (function () {
         __metadata("design:paramtypes", [_token_service__WEBPACK_IMPORTED_MODULE_1__["TokenService"]])
     ], BeforeLoginService);
     return BeforeLoginService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/is-company-admin.service.ts":
+/*!******************************************************!*\
+  !*** ./src/app/services/is-company-admin.service.ts ***!
+  \******************************************************/
+/*! exports provided: IsCompanyAdminService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IsCompanyAdminService", function() { return IsCompanyAdminService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _token_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./token.service */ "./src/app/services/token.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var IsCompanyAdminService = /** @class */ (function () {
+    function IsCompanyAdminService(token) {
+        this.token = token;
+    }
+    IsCompanyAdminService.prototype.canActivate = function (route, state) {
+        return JSON.parse(this.token.getUser()).role == 'CompanyAdmin' ? true : false;
+    };
+    IsCompanyAdminService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_token_service__WEBPACK_IMPORTED_MODULE_1__["TokenService"]])
+    ], IsCompanyAdminService);
+    return IsCompanyAdminService;
 }());
 
 
