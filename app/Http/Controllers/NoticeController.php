@@ -17,8 +17,10 @@ class NoticeController extends Controller
         if((json_decode(base64_decode(explode('.', $token)[1]))->iss=='https://ems.aladinlabs.com/api/login') || (json_decode(base64_decode(explode('.', $token)[1]))->iss=='https://ems.aladinlabs.com/api/signup')){
             $user = User::where('email', $email)->first();
             if($user==null)
-            return response()->json(['error' => 'Email incorrect'],Response::HTTP_UNPROCESSABLE_ENTITY);
-            return $user->role;
+                return response()->json(['error' => 'Email incorrect'],Response::HTTP_UNPROCESSABLE_ENTITY);
+            $role = $user->role;
+            $id = $user->id;
+            return DB::select('select * from notice, readstatus  where readstatus.userId = ?', $id);
         } else {
             return response()->json(['error' => 'Token incorrect'],Response::HTTP_UNPROCESSABLE_ENTITY);
         }
