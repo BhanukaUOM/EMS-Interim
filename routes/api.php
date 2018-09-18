@@ -6,6 +6,7 @@ Route::group([
 
 ], function () {
 
+    //Auth
     Route::post('login', 'AuthController@login');
     Route::post('signup', 'AuthController@signup');
     Route::post('logout', 'AuthController@logout');
@@ -13,6 +14,9 @@ Route::group([
     Route::post('me', 'AuthController@me');
     Route::post('sendPasswordReset', 'PasswordResetController@sendEmail');
     Route::post('responsePasswordReset', 'PasswordResetController@reset');
+
+    //Notice
+    Route::get('getNotice', 'NoticeController@getNotice');
 
     Route::get('{any}', function () {
         return 'Unortharized!';
