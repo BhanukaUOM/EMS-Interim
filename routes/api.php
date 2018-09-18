@@ -16,7 +16,8 @@ Route::group([
     Route::post('responsePasswordReset', 'PasswordResetController@reset');
 
     //Notice
-    Route::get('getNotice', 'NoticeController@getNotice');
+    Route::get('notice/get', 'NoticeController@get');
+    Route::get('notice/add', 'NoticeController@add');
 
     Route::get('{any}', function () {
         return 'Unortharized!';
