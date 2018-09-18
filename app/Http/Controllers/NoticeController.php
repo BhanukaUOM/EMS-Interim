@@ -12,6 +12,6 @@ class NoticeController extends Controller
 {
     public function getNotice(Request $request){
         $token = $request->access_token;
-        return (json_decode(base64_decode(explode('.', $token)[1]))->iss=='https:\/\/ems.aladinlabs.com\/api\/login')?true:false;
+        return (json_decode(base64_decode(explode('.', $token)[1]))->iss=='https:\/\/ems.aladinlabs.com\/api\/login')?'true':'false';
     }
 }
