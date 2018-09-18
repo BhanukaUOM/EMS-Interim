@@ -22,7 +22,7 @@ class NoticeController extends Controller
             $role = $user->role;
             $id = $user->id;
             //return DB::select('select * from notice, readstatus  where readstatus.userId = ?', $id);
-            return DB::select('select * from notice where role= ? and active=1', $role);
+            return DB::select('select * from notice where role= ? and active=1', [$role]);
         } else {
             return response()->json(['error' => 'Token incorrect'],Response::HTTP_UNPROCESSABLE_ENTITY);
         }
