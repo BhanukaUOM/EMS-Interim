@@ -30,7 +30,7 @@ class NoticeController extends Controller
             if($role='SuperAdmin' || $role='SchoolAdmin' || $role='Teacher')
                 return DB::select('select * from notices');
             else
-                return DB::select('select * from notices where role= ? and active=1', [$role]);
+                return DB::select('select * from notices where (role= ? or role="Both") and active=1', [$role]);
         } else {
             return response()->json(['error' => 'Token incorrect'],Response::HTTP_UNPROCESSABLE_ENTITY);
         }
