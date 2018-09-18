@@ -23,7 +23,7 @@ class NoticeController extends Controller
             $id = $user->id;
             //return DB::select('select * from notice, readstatus  where readstatus.userId = ?', $id);
             if($role='SuperAdmin' || $role='SchoolAdmin' || $role='Teacher')
-                return DB::select('select * from notice', [$role]);
+                return DB::select('select * from notice');
             else
                 return DB::select('select * from notice where role= ? and active=1', [$role]);
         } else {
