@@ -285,7 +285,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\" style=\"margin-top: 30px;\">\n  <a class=\"text-white btn btn-info\" routerLink=\"/signup\">Add New Admin</a> \n</div>\n"
+module.exports = "<div class=\"container\" style=\"margin-top: 30px;\">\n  <a class=\"text-white btn btn-info\" routerLink=\"/signup\">Add New User</a> \n</div>\n"
 
 /***/ }),
 
@@ -1148,7 +1148,7 @@ var TokenService = /** @class */ (function () {
     }
     TokenService.prototype.set = function (token) {
         localStorage.setItem('token', token.access_token);
-        localStorage.setItem('user', token.user);
+        localStorage.setItem('user', JSON.stringify(token.user));
     };
     TokenService.prototype.get = function () {
         return localStorage.getItem('token');
