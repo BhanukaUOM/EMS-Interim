@@ -87,7 +87,7 @@ class NoticeController extends Controller
             if($user==null)
                 return response()->json(['error' => 'Email incorrect'],Response::HTTP_UNPROCESSABLE_ENTITY);
             $role = $user->role;
-            $id = $user->id;
+            $id = $request->id;
             //return $role;
             //return DB::select('select * from notice, readstatus  where readstatus.userId = ?', $id);
             if($role=='CompanyAdmin' || $role=='SchoolAdmin' || $role=='Teacher'){
@@ -99,7 +99,7 @@ class NoticeController extends Controller
                 return response()->json(['data' => 'Successfully Updated']);
             }
             else
-                return response()->json(['error' => 'No Permission to Add Notice'],Response::HTTP_UNPROCESSABLE_ENTITY);
+                return response()->json(['error' => 'No Permission to update Notice'],Response::HTTP_UNPROCESSABLE_ENTITY);
         } else {
             return response()->json(['error' => 'Token incorrect'],Response::HTTP_UNPROCESSABLE_ENTITY);
         }
