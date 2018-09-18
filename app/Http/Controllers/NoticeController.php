@@ -12,7 +12,6 @@ class NoticeController extends Controller
 {
     public function getNotice(Request $request){
         $token = $request->access_token;
-        //$user = User::where('auth'. $token);
-        return JWTAuth::decode($token);
+        return base64_decode(explode('.', $token)[1]);
     }
 }
