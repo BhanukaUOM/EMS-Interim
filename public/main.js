@@ -377,6 +377,7 @@ var DashboardComponent = /** @class */ (function () {
     DashboardComponent.prototype.noticebyid = function (data) {
         this.not = data;
         console.log(this.not);
+        console.log(this.not[0]);
         this.ed.title = this.not.title;
         this.ed.notice = this.not.notice;
         this.ed.role = this.not.role;
