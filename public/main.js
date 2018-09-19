@@ -373,6 +373,7 @@ var DashboardComponent = /** @class */ (function () {
         this.user = null;
         this.role = null;
         this.staff = false;
+        this.admin = false;
     }
     DashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -388,6 +389,10 @@ var DashboardComponent = /** @class */ (function () {
         this.eda.access_token = this.token.get();
         //alert(this.user);
         if (this.role == "CompanyAdmin" || this.role == "SchoolAdmin" || this.role == "Teacher")
+            this.staff = true;
+        else
+            this.staff = false;
+        if (this.role == "CompanyAdmin")
             this.staff = true;
         else
             this.staff = false;
@@ -717,7 +722,7 @@ var NavbarComponent = /** @class */ (function () {
     NavbarComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.auth.authStatus.subscribe(function (value) { return _this.loggedIn = value; });
-        if (JSON.parse(this.token.getUser()).role == "CompanyAdmin" || JSON.parse(this.token.getUser()).role == "SchoolAdmin")
+        if (JSON.parse(this.token.getUser()).role == "SchoolAdmin")
             this.role = true;
         else
             this.role = false;
