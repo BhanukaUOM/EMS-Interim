@@ -39,9 +39,7 @@ class NoticeController extends Controller
     public function byid(Request $request){
         $this->validate($request, [
             'access_token' => 'required',
-            'email' => 'required',            
-            'notice'  => 'required',
-            'role' => 'required',
+            'email' => 'required',     
             'id' => 'required'
         ]);
 
