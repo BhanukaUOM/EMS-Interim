@@ -624,7 +624,6 @@ var LoginComponent = /** @class */ (function () {
         this.error = null;
     }
     LoginComponent.prototype.ngOnInit = function () {
-        location.reload();
     };
     LoginComponent.prototype.onSubmit = function () {
         var _this = this;
