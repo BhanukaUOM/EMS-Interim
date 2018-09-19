@@ -367,11 +367,27 @@ var DashboardComponent = /** @class */ (function () {
         alert(id);
     };
     DashboardComponent.prototype.delete = function (id) {
+        // if (confirm('Are you sure you want to detele this Notice?')) {
+        //   this.formid.id = id;
+        //   return this.api.post('notice/delete', this.formid).subscribe(
+        //     data => this.notifi(data),
+        //     error => this.notify.error(error.error.error, {timeout:0})
+        //   );
+        // }
         var _this = this;
-        if (confirm('Are you sure you want to detele this Notice?')) {
-            this.formid.id = id;
-            return this.api.post('notice/delete', this.formid).subscribe(function (data) { return _this.notifi(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
-        }
+        this.notify.confirm('Are you sure you want to detele this Notice?', 'Delete Notice', {
+            timeout: 0,
+            showProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            buttons: [
+                { text: 'Yes', action: function () {
+                        _this.formid.id = id;
+                        _this.api.post('notice/delete', _this.formid).subscribe(function (data) { return _this.notifi(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
+                    }, bold: false },
+                { text: 'No' }
+            ]
+        });
     };
     DashboardComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
