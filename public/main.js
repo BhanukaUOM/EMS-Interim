@@ -1160,7 +1160,7 @@ var SignupComponent = /** @class */ (function () {
     SignupComponent.prototype.tokenHandler = function (data) {
         this.notify.info("Added Succesfully", { timeout: 2000 });
         //this.token.set(data);
-        this.router.navigateByUrl('/dashboard');
+        this.router.navigateByUrl('/users');
     };
     SignupComponent.prototype.errorHandle = function (error) {
         this.error = error.error.errors;
