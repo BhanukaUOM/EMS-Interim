@@ -394,6 +394,7 @@ var DashboardComponent = /** @class */ (function () {
             this.staff = false;
         else
             this.staff = true;
+        alert(this.staff);
         if (this.role == "CompanyAdmin")
             this.staff = true;
         else
