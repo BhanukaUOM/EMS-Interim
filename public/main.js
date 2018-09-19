@@ -288,7 +288,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\" style=\"margin-top: 30px;\">\n  <a class=\"text-white btn btn-info\" routerLink=\"/signup\" *ngIf=\"role=='CompanyAdmin'\">Add New User</a> \n</div>\n<br>\n<hr>\n<br>\n<div class=\"container\">\n  <div class=\"card-deck\">\n      <div class=\"card\" *ngFor=\"let n of notice\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">{{ n.title }}</h5>\n          <p class=\"card-text\">{{ n.notice }}</p>\n        </div>\n        <div class=\"card-footer text-center\">\n          <small class=\"text-muted\">{{ n.updated_at }}</small><br>\n          <div>\n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='pause( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Pause\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-pause\"></i>\n            </a>   \n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='edit( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edit\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-edit\"></i>\n            </a> \n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='delete( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Delete\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-trash\"></i>\n            </a> \n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n<!-- The Modal -->\n<div id=\"modal\" class=\"modal\">\n\n    <div class=\"modal-dialog\" role=\"document\">\n        <div class=\"modal-content\">\n          <div class=\"modal-header\">\n            <h5 class=\"modal-title\">Modal title</h5>\n            <button type=\"button\" class=\"close\" (click)='close()'>\n              <span aria-hidden=\"true\">&times;</span>\n            </button>\n          </div>\n          <div class=\"modal-body\">\n            <p>Modal body text goes here.</p>\n          </div>\n          <div class=\"modal-footer\">\n            <button type=\"button\" class=\"btn btn-primary\">Save changes</button>\n            <button type=\"button\" class=\"btn btn-secondary\" (click)='close()'>Close</button>\n          </div>\n        </div>\n      </div>\n\n</div>"
+module.exports = "<div class=\"container\" style=\"margin-top: 30px;\">\n  <a class=\"text-white btn btn-info\" routerLink=\"/signup\" *ngIf=\"role=='CompanyAdmin'\">Add New User</a> \n</div>\n<br>\n<hr>\n<br>\n<div class=\"container\">\n  <div class=\"card-deck\">\n      <div class=\"card\" *ngFor=\"let n of notice\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">{{ n.title }}</h5>\n          <p class=\"card-text\">{{ n.notice }}</p>\n        </div>\n        <div class=\"card-footer text-center\">\n          <small class=\"text-muted\">{{ n.updated_at }}</small><br>\n          <div>\n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='pause( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Pause\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-pause\"></i>\n            </a>   \n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='edit( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edit\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-edit\"></i>\n            </a> \n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='delete( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Delete\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-trash\"></i>\n            </a> \n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n<!-- The Modal -->\n<div id=\"modal\" class=\"modal\">\n\n    <div class=\"modal-dialog\" role=\"document\">\n        <div class=\"modal-content\">\n          <div class=\"modal-header\">\n            <h5 class=\"modal-title\">Edit Notice</h5>\n            <button type=\"button\" class=\"close\" (click)='close()'>\n              <span aria-hidden=\"true\">&times;</span>\n            </button>\n          </div>\n          <div class=\"modal-body\">\n              <div class=\"form-group\">\n                  <label for=\"title\">Title</label>\n                  <input type=\"text\" class=\"form-control\" id=\"title\" placeholder=\"Enter title\"  required [(ngModel)]=\"ed.title\">\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"notice\">Notice</label>\n                    <textarea class=\"form-control\" id=\"notice\" placeholder=\"Enter notice\"  required [(ngModel)]=\"ed.notice\">\n                  </div>\n                  <div class=\"form-group\">\n                      <label for=\"notice\">For</label>\n                      <select class=\"form-control\" name=\"role\" id=\"inputRole\" required [(ngModel)]=\"ed.role\">\n                          <option value=\"Student\">Student</option>\n                          <option value=\"Parent\">Parent</option>\n                          <option value=\"Both\">Both</option>\n                        </select>\n                  </div>\n          </div>\n          <div class=\"modal-footer\">\n            <button type=\"button\" class=\"btn btn-primary\" (click)='editsub()'>Save changes</button>\n            <button type=\"button\" class=\"btn btn-secondary\" (click)='close()'>Close</button>\n          </div>\n        </div>\n      </div>\n\n</div>"
 
 /***/ }),
 
@@ -337,6 +337,15 @@ var DashboardComponent = /** @class */ (function () {
             id: 0
         };
         this.notice = null;
+        this.not = null;
+        this.ed = {
+            email: null,
+            access_token: null,
+            id: 0,
+            title: null,
+            notice: null,
+            role: null
+        };
         this.user = null;
         this.role = null;
     }
@@ -348,6 +357,8 @@ var DashboardComponent = /** @class */ (function () {
         this.form.access_token = this.token.get();
         this.formid.email = this.user.email;
         this.formid.access_token = this.token.get();
+        this.ed.email = this.user.email;
+        this.ed.access_token = this.token.get();
         return this.api.post('notice/get', this.form).subscribe(function (data) { return _this.handler(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
     };
     DashboardComponent.prototype.handler = function (data) {
@@ -363,12 +374,20 @@ var DashboardComponent = /** @class */ (function () {
         this.formid.id = id;
         return this.api.post('notice/pause', this.formid).subscribe(function (data) { return _this.notifi(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
     };
+    DashboardComponent.prototype.noticebyid = function (data) {
+        this.not = data;
+    };
     DashboardComponent.prototype.edit = function (id) {
         var _this = this;
         this.formid.id = id;
-        return this.api.post('notice/getbyid', this.formid).subscribe(function (data) { return console.log(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
+        return this.api.post('notice/getbyid', this.formid).subscribe(function (data) { return _this.noticebyid(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
         //var modal = document.getElementById('modal');
         //modal.style.display = "block";
+    };
+    DashboardComponent.prototype.editsub = function () {
+        var _this = this;
+        this.close();
+        return this.api.post('notice/edit', this.ed).subscribe(function (data) { return _this.notifi(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
     };
     DashboardComponent.prototype.close = function () {
         var modal = document.getElementById('modal');
