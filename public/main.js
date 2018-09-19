@@ -945,7 +945,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container text-right\" style=\"margin-top: 30px;\">\n    <a class=\"text-white btn btn-info\" routerLink=\"/signup\" *ngIf=\"role=='CompanyAdmin'\">Add New User</a> \n  </div>\n  <br>\n  <hr>\n  <br>"
+module.exports = "<div class=\"container text-right\" style=\"margin-top: 30px;\">\n    <a class=\"text-white btn btn-info\" routerLink=\"/signup\" *ngIf=\"role=='CompanyAdmin'\">Add New User</a> \n  </div>\n  <br>\n  <hr>\n  <br>\n  <div class=\"col-md-12\">\n      <div class=\"panel panel-default\">\n          <div class=\"panel-body\">\n              <div class=\"table-responsive\">\n                  <table class=\"table table-striped table-bordered no-margin\">\n                      <thead>\n                          <tr>\n                              <th>Name</th>\n                              <th>Email</th>\n                              <th>Role</th>\n                              <th *ngIf=\"role=='CompanyAdmin'\"></th>\n                          </tr>\n                      </thead>\n                    <tr *ngFor=\"let user of users\">\n                        <td>{{ user.name }}</td>\n                        <td>{{ user.email }}</td>\n                        <td>{{ user.role }}</td>\n                        <td *ngIf=\"role=='CompanyAdmin'\">\n                                <a href=\"javascript:void(0)\" class=\"item\"  (click)='delete( user.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Delete\" style=\"padding-right: 10px;\">\n                                    <i class=\"fa fa-trash\"></i>\n                                </a> \n                        </td>\n                    </tr>\n                  </table>\n              </div>\n          </div>\n      </div>\n  </div>"
 
 /***/ }),
 
@@ -987,12 +987,51 @@ var ProfileComponent = /** @class */ (function () {
         this.router = router;
         this.api = api;
         this.notify = notify;
+        this.form = {
+            email: null,
+            access_token: null
+        };
+        this.formid = {
+            id: 0,
+            email: null,
+            access_token: null
+        };
         this.user = null;
         this.role = null;
+        this.users = null;
     }
     ProfileComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.user = JSON.parse(this.token.getUser());
         this.role = this.user.role;
+        this.form.email = this.user.email;
+        this.form.access_token = this.token.get();
+        return this.api.post('users/get', this.form).subscribe(function (data) { return _this.handler(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
+    };
+    ProfileComponent.prototype.handler = function (data) {
+        this.users = data;
+    };
+    ProfileComponent.prototype.delete = function (id) {
+        var _this = this;
+        this.notify.confirm('Are you sure you want to detele this Notice?', 'Delete Notice', {
+            timeout: 0,
+            showProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            buttons: [
+                { text: 'Yes', action: function () {
+                        _this.formid.id = id;
+                        _this.api.post('notice/delete', _this.formid).subscribe(function (data) { return _this.notifi(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
+                    }, bold: false },
+                { text: 'No' }
+            ]
+        });
+    };
+    ProfileComponent.prototype.notifi = function (data) {
+        //console.log(data);
+        this.notify.info(data.data, { timeout: 2000 });
+        setTimeout(1000);
+        this.ngOnInit();
     };
     ProfileComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({

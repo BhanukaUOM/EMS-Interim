@@ -90,4 +90,59 @@ class AuthController extends Controller
             'user' => auth()->user()
         ]);
     }
+
+    public function get(Request $request){
+        $this->validate($request, [
+            'access_token' => 'required',
+            'email' => 'required'
+        ]);
+
+        $token = $request->access_token;
+        $email = $request->email;
+        if((json_decode(base64_decode(explode('.', $token)[1]))->iss=='https://ems.aladinlabs.com/api/login') || (json_decode(base64_decode(explode('.', $token)[1]))->iss=='https://ems.aladinlabs.com/api/signup')){
+            $user = User::where('email', $email)->first();
+            if($user==null)
+                return response()->json(['error' => 'Email incorrect'],Response::HTTP_UNPROCESSABLE_ENTITY);
+            $role = $user->role;
+            $id = $user->id;
+            //return DB::select('select * from notice, readstatus  where readstatus.userId = ?', $id);
+            if($role=='CompanyAdmin')
+                return json_encode(DB::select('select * from users'));
+            else
+            return response()->json(['error' => 'No Access!'],Response::HTTP_UNPROCESSABLE_ENTITY);
+        } else {
+            return response()->json(['error' => 'Token incorrect'],Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+    }
+
+    public function delete(Request $request){
+        $this->validate($request, [
+            'access_token' => 'required',
+            'email' => 'required',
+            'id' => 'required'
+        ]);
+
+        $token = $request->access_token;
+        $email = $request->email;
+        if((json_decode(base64_decode(explode('.', $token)[1]))->iss=='https://ems.aladinlabs.com/api/login') || (json_decode(base64_decode(explode('.', $token)[1]))->iss=='https://ems.aladinlabs.com/api/signup')){
+            $user = User::where('email', $email)->first();
+            if($user==null)
+                return response()->json(['error' => 'Email incorrect'],Response::HTTP_UNPROCESSABLE_ENTITY);
+            $role = $user->role;
+            $id = $user->id;
+            //return DB::select('select * from notice, readstatus  where readstatus.userId = ?', $id);
+            if($role=='CompanyAdmin'){
+                if(User::where('role', 'CompanyAdmin')->count()<2)
+                    return response()->json(['error' => 'Need least one Admin!'],Response::HTTP_UNPROCESSABLE_ENTITY);
+                $user = User::users($id);
+                $user->delete();
+
+                return response()->json(['data' => 'Successfully Deleted']);
+        }
+            else
+            return response()->json(['error' => 'No Access!'],Response::HTTP_UNPROCESSABLE_ENTITY);
+        } else {
+            return response()->json(['error' => 'Token incorrect'],Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+    }
 }
