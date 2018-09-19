@@ -387,6 +387,8 @@ var DashboardComponent = /** @class */ (function () {
         this.ed.access_token = this.token.get();
         this.eda.email = this.user.email;
         this.eda.access_token = this.token.get();
+        if (this.role != 'CompanyAdmin')
+            this.router.navigateByUrl("/users");
         //alert(this.user);
         if (this.role == "CompanyAdmin" || this.role == "SchoolAdmin" || this.role == "Teacher")
             this.staff = true;
