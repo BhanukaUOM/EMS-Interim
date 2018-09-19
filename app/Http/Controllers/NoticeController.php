@@ -66,7 +66,8 @@ class NoticeController extends Controller
             'access_token' => 'required',
             'email' => 'required',
             'notice'  => 'required',
-            'role' => 'required'
+            'role' => 'required',
+            'title' => 'required'
         ]);
 
         $token = $request->access_token;
@@ -83,6 +84,7 @@ class NoticeController extends Controller
                 $notice = new Notice;
                 $notice->notice = $request->notice;
                 $notice->role = $request->role;
+                $notice->title = $request->title;
                 $notice->save();
 
                 return response()->json(['data' => 'Successfully Added']);
@@ -101,7 +103,8 @@ class NoticeController extends Controller
             'email' => 'required',
             'id' => 'required',
             'notice'  => 'required',
-            'role' => 'required'
+            'role' => 'required',
+            'title' => 'required'
         ]);
 
         $token = $request->access_token;
@@ -121,6 +124,7 @@ class NoticeController extends Controller
                 $notice->notice = $request->notice;
                 //return $request->role;
                 $notice->role = $request->role;
+                $notice->title = $request->title;
                 $notice->save();
 
                 return response()->json(['data' => 'Successfully Updated']);
