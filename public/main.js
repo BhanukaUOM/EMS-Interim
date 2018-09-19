@@ -932,6 +932,8 @@ var ResponseResetComponent = /** @class */ (function () {
             if (error.error.errors.password)
                 this.notify.error(error.error.errors.password, { timeout: 0 });
         }
+        if (error.error.error)
+            this.notify.error(error.error.error, { timeout: 0 });
     };
     ResponseResetComponent.prototype.resetHandler = function (data) {
         this.notify.info(data.data, { timeout: 2000 });
