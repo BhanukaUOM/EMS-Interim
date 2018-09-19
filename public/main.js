@@ -390,10 +390,10 @@ var DashboardComponent = /** @class */ (function () {
         if (this.role == 'CompanyAdmin')
             this.router.navigateByUrl("/users");
         //alert(this.user);
-        if (this.role == "SchoolAdmin" || this.role == "Teacher")
-            this.staff = true;
-        else
+        if (this.role == "Student" || this.role == "Parent")
             this.staff = false;
+        else
+            this.staff = true;
         if (this.role == "CompanyAdmin")
             this.staff = true;
         else
@@ -729,7 +729,7 @@ var NavbarComponent = /** @class */ (function () {
             this.role = true;
         else
             this.role = false;
-        if (JSON.parse(this.token.getUser()).role == "SchoolAdmin")
+        if (JSON.parse(this.token.getUser()).role != "CompanyAdmin")
             this.notice = true;
         else
             this.notice = false;
