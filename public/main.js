@@ -344,7 +344,7 @@ var DashboardComponent = /** @class */ (function () {
         return this.api.post('notice/get', this.form).subscribe(function (data) { return _this.handler(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
     };
     DashboardComponent.prototype.handler = function (data) {
-        console.log(data);
+        console.log(JSON.parse(data));
         //this.notice = JSON.parse(data);
     };
     DashboardComponent = __decorate([
