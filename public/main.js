@@ -82,7 +82,7 @@ var appRoutes = [
     {
         path: 'signup',
         component: _components_signup_signup_component__WEBPACK_IMPORTED_MODULE_3__["SignupComponent"],
-        canActivate: [_services_is_company_admin_service__WEBPACK_IMPORTED_MODULE_10__["IsCompanyAdminService"]]
+        canActivate: [_services_afterLogin__WEBPACK_IMPORTED_MODULE_6__["AfterLoginService"]]
     },
     {
         path: 'users',
