@@ -610,13 +610,12 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(api, token, router, auth, notify, route) {
+    function LoginComponent(api, token, router, auth, notify) {
         this.api = api;
         this.token = token;
         this.router = router;
         this.auth = auth;
         this.notify = notify;
-        this.route = route;
         this.form = {
             email: null,
             password: null,
@@ -639,7 +638,6 @@ var LoginComponent = /** @class */ (function () {
             this.router.navigateByUrl('/users');
         else
             this.router.navigateByUrl('/notice');
-        //this.router.routeReuseStrategy.retrieve;
     };
     LoginComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -651,7 +649,7 @@ var LoginComponent = /** @class */ (function () {
             _services_token_service__WEBPACK_IMPORTED_MODULE_2__["TokenService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
             _services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"],
-            ng_snotify__WEBPACK_IMPORTED_MODULE_5__["SnotifyService"], Object])
+            ng_snotify__WEBPACK_IMPORTED_MODULE_5__["SnotifyService"]])
     ], LoginComponent);
     return LoginComponent;
 }());
