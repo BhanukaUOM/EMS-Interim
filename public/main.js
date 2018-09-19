@@ -375,8 +375,8 @@ var DashboardComponent = /** @class */ (function () {
         return this.api.post('notice/pause', this.formid).subscribe(function (data) { return _this.notifi(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
     };
     DashboardComponent.prototype.noticebyid = function (data) {
-        this.not = JSON.parse(data);
-        console.log(this.not.title);
+        this.not = data;
+        console.log(this.not['title']);
         this.ed.title = this.not.title;
         this.ed.notice = this.not.notice;
         this.ed.role = this.not.role;
