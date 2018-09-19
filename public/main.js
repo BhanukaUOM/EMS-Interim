@@ -39,10 +39,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_signup_signup_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/signup/signup.component */ "./src/app/components/signup/signup.component.ts");
 /* harmony import */ var _components_home_home_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/home/home.component */ "./src/app/components/home/home.component.ts");
 /* harmony import */ var _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/dashboard/dashboard.component */ "./src/app/components/dashboard/dashboard.component.ts");
-/* harmony import */ var _services_beforeLogin__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./services/beforeLogin */ "./src/app/services/beforeLogin.ts");
-/* harmony import */ var _components_password_request_reset_request_reset_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/password/request-reset/request-reset.component */ "./src/app/components/password/request-reset/request-reset.component.ts");
-/* harmony import */ var _components_password_response_reset_response_reset_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/password/response-reset/response-reset.component */ "./src/app/components/password/response-reset/response-reset.component.ts");
-/* harmony import */ var _services_is_company_admin_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./services/is-company-admin.service */ "./src/app/services/is-company-admin.service.ts");
+/* harmony import */ var _services_afterLogin__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./services/afterLogin */ "./src/app/services/afterLogin.ts");
+/* harmony import */ var _services_beforeLogin__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./services/beforeLogin */ "./src/app/services/beforeLogin.ts");
+/* harmony import */ var _components_password_request_reset_request_reset_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/password/request-reset/request-reset.component */ "./src/app/components/password/request-reset/request-reset.component.ts");
+/* harmony import */ var _components_password_response_reset_response_reset_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/password/response-reset/response-reset.component */ "./src/app/components/password/response-reset/response-reset.component.ts");
+/* harmony import */ var _services_is_company_admin_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./services/is-company-admin.service */ "./src/app/services/is-company-admin.service.ts");
+/* harmony import */ var _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/profile/profile.component */ "./src/app/components/profile/profile.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -59,26 +61,33 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
 var appRoutes = [
     {
         path: 'login',
         component: _components_login_login_component__WEBPACK_IMPORTED_MODULE_2__["LoginComponent"],
-        canActivate: [_services_beforeLogin__WEBPACK_IMPORTED_MODULE_6__["BeforeLoginService"]]
+        canActivate: [_services_beforeLogin__WEBPACK_IMPORTED_MODULE_7__["BeforeLoginService"]]
     },
     {
         path: 'reset-password',
-        component: _components_password_request_reset_request_reset_component__WEBPACK_IMPORTED_MODULE_7__["RequestResetComponent"],
-        canActivate: [_services_beforeLogin__WEBPACK_IMPORTED_MODULE_6__["BeforeLoginService"]]
+        component: _components_password_request_reset_request_reset_component__WEBPACK_IMPORTED_MODULE_8__["RequestResetComponent"],
+        canActivate: [_services_beforeLogin__WEBPACK_IMPORTED_MODULE_7__["BeforeLoginService"]]
     },
     {
         path: 'reset-password-submit',
-        component: _components_password_response_reset_response_reset_component__WEBPACK_IMPORTED_MODULE_8__["ResponseResetComponent"],
-        canActivate: [_services_beforeLogin__WEBPACK_IMPORTED_MODULE_6__["BeforeLoginService"]]
+        component: _components_password_response_reset_response_reset_component__WEBPACK_IMPORTED_MODULE_9__["ResponseResetComponent"],
+        canActivate: [_services_beforeLogin__WEBPACK_IMPORTED_MODULE_7__["BeforeLoginService"]]
     },
     {
         path: 'signup',
         component: _components_signup_signup_component__WEBPACK_IMPORTED_MODULE_3__["SignupComponent"],
-        canActivate: [_services_is_company_admin_service__WEBPACK_IMPORTED_MODULE_9__["IsCompanyAdminService"]]
+        canActivate: [_services_is_company_admin_service__WEBPACK_IMPORTED_MODULE_10__["IsCompanyAdminService"]]
+    },
+    {
+        path: 'users',
+        component: _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_11__["ProfileComponent"],
+        canActivate: [_services_afterLogin__WEBPACK_IMPORTED_MODULE_6__["AfterLoginService"]]
     },
     {
         path: '',
@@ -86,8 +95,8 @@ var appRoutes = [
     },
     {
         path: 'dashboard',
-        component: _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_5__["DashboardComponent"] //,
-        //canActivate : [AfterLoginService]
+        component: _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_5__["DashboardComponent"],
+        canActivate: [_services_afterLogin__WEBPACK_IMPORTED_MODULE_6__["AfterLoginService"]]
     }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -418,6 +427,7 @@ var DashboardComponent = /** @class */ (function () {
                 { text: 'No' }
             ]
         });
+        this.ngOnInit();
     };
     DashboardComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -623,7 +633,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-dark bg-dark\">\n  <a class=\"navbar-brand text-white\" routerLink=\"\">EMS</a>\n    <div class=\"\">\n        <a class=\"text-white\" routerLink=\"login\" style=\"padding-right: 20px;\" *ngIf=\"!loggedIn\">Login</a> \n        <a class=\"text-white\" routerLink=\"dashboard\" style=\"padding-right: 20px;\" *ngIf=\"loggedIn\">Dashboard</a>\n        <a class=\"text-white\" href=\"javascript:void(0)\" (click)=\"logout($event)\" style=\"padding-right: 20px;\" *ngIf=\"loggedIn\">Logout</a>  \n    </div>\n</nav>"
+module.exports = "<nav class=\"navbar navbar-dark bg-dark\">\n  <a class=\"navbar-brand text-white\" routerLink=\"\">EMS</a>\n    <div class=\"\">\n        <a class=\"text-white\" routerLink=\"login\" style=\"padding-right: 20px;\" *ngIf=\"!loggedIn\">Login</a> \n        <a class=\"text-white\" routerLink=\"dashboard\" style=\"padding-right: 20px;\" *ngIf=\"loggedIn\">Users</a>\n        <a class=\"text-white\" routerLink=\"users\" style=\"padding-right: 20px;\" *ngIf=\"loggedIn\">Notice</a>\n        <a class=\"text-white\" href=\"javascript:void(0)\" (click)=\"logout($event)\" style=\"padding-right: 20px;\" *ngIf=\"loggedIn\">Logout</a>  \n    </div>\n</nav>"
 
 /***/ }),
 
