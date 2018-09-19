@@ -344,7 +344,8 @@ var DashboardComponent = /** @class */ (function () {
         return this.api.post('notice/get', this.form).subscribe(function (data) { return _this.handler(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
     };
     DashboardComponent.prototype.handler = function (data) {
-        this.notice = JSON.parse(data);
+        console.log(data);
+        //this.notice = JSON.parse(data);
     };
     DashboardComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
