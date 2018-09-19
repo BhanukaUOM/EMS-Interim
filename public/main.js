@@ -288,7 +288,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\" style=\"margin-top: 30px;\">\n  <a class=\"text-white btn btn-info\" routerLink=\"/signup\" *ngIf=\"role=='CompanyAdmin'\">Add New User</a> \n</div>\n<br>\n<hr>\n<br>\n<div class=\"card-deck\">\n    <div class=\"card\" *ngFor=\"let n of notice\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\">{{ n.title }}</h5>\n        <p class=\"card-text\">{{ n.notice }}</p>\n      </div>\n      <div class=\"card-footer text-center\">\n        <small class=\"text-muted\">{{ n.updated_at }}</small><br>\n        <div>\n          <a href=\"javascript:void(0)\" class=\"item\"  data-toggle=\"tooltip\" data-placement=\"top\" title=\"Pause\" style=\"padding-right: 10px;\">\n              <i class=\"fa fa-pause\"></i>\n          </a>   \n          <a href=\"javascript:void(0)\" class=\"item\"  data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edit\" style=\"padding-right: 10px;\">\n              <i class=\"fa fa-edit\"></i>\n          </a> \n          <a href=\"javascript:void(0)\" class=\"item\"  data-toggle=\"tooltip\" data-placement=\"top\" title=\"Delete\" style=\"padding-right: 10px;\">\n              <i class=\"fa fa-trash\"></i>\n          </a> \n        </div>\n      </div>\n    </div>\n  </div>"
+module.exports = "<div class=\"container\" style=\"margin-top: 30px;\">\n  <a class=\"text-white btn btn-info\" routerLink=\"/signup\" *ngIf=\"role=='CompanyAdmin'\">Add New User</a> \n</div>\n<br>\n<hr>\n<br>\n<div class=\"card-deck\">\n    <div class=\"card\" *ngFor=\"let n of notice\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\">{{ n.title }}</h5>\n        <p class=\"card-text\">{{ n.notice }}</p>\n      </div>\n      <div class=\"card-footer text-center\">\n        <small class=\"text-muted\">{{ n.updated_at }}</small><br>\n        <div>\n          <a href=\"javascript:void(0)\" class=\"item\"  (onclick)='pause( {{ n.id }} )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Pause\" style=\"padding-right: 10px;\">\n              <i class=\"fa fa-pause\"></i>\n          </a>   \n          <a href=\"javascript:void(0)\" class=\"item\"  data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edit\" style=\"padding-right: 10px;\">\n              <i class=\"fa fa-edit\"></i>\n          </a> \n          <a href=\"javascript:void(0)\" class=\"item\"  data-toggle=\"tooltip\" data-placement=\"top\" title=\"Delete\" style=\"padding-right: 10px;\">\n              <i class=\"fa fa-trash\"></i>\n          </a> \n        </div>\n      </div>\n    </div>\n  </div>"
 
 /***/ }),
 
@@ -347,6 +347,9 @@ var DashboardComponent = /** @class */ (function () {
         //console.log(JSON.parse(data));
         //this.notice = JSON.parse(data);
         this.notice = data;
+    };
+    DashboardComponent.prototype.pause = function (id) {
+        alert(id);
     };
     DashboardComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
