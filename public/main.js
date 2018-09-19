@@ -594,6 +594,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/auth.service */ "./src/app/services/auth.service.ts");
 /* harmony import */ var ng_snotify__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ng-snotify */ "./node_modules/ng-snotify/index.js");
+/* harmony import */ var _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../navbar/navbar.component */ "./src/app/components/navbar/navbar.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -609,13 +610,15 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(api, token, router, auth, notify) {
+    function LoginComponent(api, token, router, auth, notify, nav) {
         this.api = api;
         this.token = token;
         this.router = router;
         this.auth = auth;
         this.notify = notify;
+        this.nav = nav;
         this.form = {
             email: null,
             password: null,
@@ -624,6 +627,7 @@ var LoginComponent = /** @class */ (function () {
         this.error = null;
     }
     LoginComponent.prototype.ngOnInit = function () {
+        this.nav.ngOnInit();
     };
     LoginComponent.prototype.onSubmit = function () {
         var _this = this;
@@ -648,7 +652,8 @@ var LoginComponent = /** @class */ (function () {
             _services_token_service__WEBPACK_IMPORTED_MODULE_2__["TokenService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
             _services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"],
-            ng_snotify__WEBPACK_IMPORTED_MODULE_5__["SnotifyService"]])
+            ng_snotify__WEBPACK_IMPORTED_MODULE_5__["SnotifyService"],
+            _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_6__["NavbarComponent"]])
     ], LoginComponent);
     return LoginComponent;
 }());
@@ -737,7 +742,6 @@ var NavbarComponent = /** @class */ (function () {
         this.token.remove();
         this.auth.changeAuthStatus(false);
         this.router.navigateByUrl('/login');
-        this.ngOnInit();
     };
     NavbarComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
