@@ -397,7 +397,7 @@ var DashboardComponent = /** @class */ (function () {
         this.ed.id = this.formid.id;
         //console.log(this.formid.id);
         this.api.post('notice/update', this.ed).subscribe(function (data) { return _this.notifi(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
-        this.router.navigateByUrl('/dashboard');
+        this.ngOnInit();
     };
     DashboardComponent.prototype.close = function () {
         var modal = document.getElementById('modal');
