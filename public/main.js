@@ -277,7 +277,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "/* The Modal (background) */\r\n.modal {\r\n    display: none; /* Hidden by default */\r\n    position: fixed; /* Stay in place */\r\n    z-index: 1; /* Sit on top */\r\n    left: 0;\r\n    top: 0;\r\n    width: 100%; /* Full width */\r\n    height: 100%; /* Full height */\r\n    overflow: auto; /* Enable scroll if needed */\r\n    background-color: rgb(0,0,0); /* Fallback color */\r\n    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */\r\n}\r\n/* Modal Content/Box */\r\n.modal-content {\r\n    background-color: #fefefe;\r\n    margin: 15% auto; /* 15% from the top and centered */\r\n    padding: 20px;\r\n    border: 1px solid #888;\r\n    width: 80%; /* Could be more or less, depending on screen size */\r\n}\r\n/* The Close Button */\r\n.close {\r\n    color: #aaa;\r\n    float: right;\r\n    font-size: 28px;\r\n    font-weight: bold;\r\n}\r\n.close:hover,\r\n.close:focus {\r\n    color: black;\r\n    text-decoration: none;\r\n    cursor: pointer;\r\n}"
 
 /***/ }),
 
@@ -288,7 +288,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\" style=\"margin-top: 30px;\">\n  <a class=\"text-white btn btn-info\" routerLink=\"/signup\" *ngIf=\"role=='CompanyAdmin'\">Add New User</a> \n</div>\n<br>\n<hr>\n<br>\n<div class=\"container\">\n  <div class=\"card-deck\">\n      <div class=\"card\" *ngFor=\"let n of notice\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">{{ n.title }}</h5>\n          <p class=\"card-text\">{{ n.notice }}</p>\n        </div>\n        <div class=\"card-footer text-center\">\n          <small class=\"text-muted\">{{ n.updated_at }}</small><br>\n          <div>\n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='pause( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Pause\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-pause\"></i>\n            </a>   \n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='edit( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edit\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-edit\"></i>\n            </a> \n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='delete( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Delete\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-trash\"></i>\n            </a> \n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <!-- Modal -->\n  <div class=\"modal fade\" id=\"editModal\" tabindex=\"-1\" role=\"dialog\" style=\"display: none;\">\n    <div class=\"modal-dialog\" role=\"document\">\n      <div class=\"modal-content\">\n        <div class=\"modal-header\">\n          <h5 class=\"modal-title\" id=\"exampleModalLabel\">Modal title</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n          ...\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n          <button type=\"button\" class=\"btn btn-primary\">Save changes</button>\n        </div>\n      </div>\n    </div>\n  </div>"
+module.exports = "<div class=\"container\" style=\"margin-top: 30px;\">\n  <a class=\"text-white btn btn-info\" routerLink=\"/signup\" *ngIf=\"role=='CompanyAdmin'\">Add New User</a> \n</div>\n<br>\n<hr>\n<br>\n<div class=\"container\">\n  <div class=\"card-deck\">\n      <div class=\"card\" *ngFor=\"let n of notice\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">{{ n.title }}</h5>\n          <p class=\"card-text\">{{ n.notice }}</p>\n        </div>\n        <div class=\"card-footer text-center\">\n          <small class=\"text-muted\">{{ n.updated_at }}</small><br>\n          <div>\n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='pause( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Pause\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-pause\"></i>\n            </a>   \n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='edit( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edit\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-edit\"></i>\n            </a> \n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='delete( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Delete\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-trash\"></i>\n            </a> \n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n<!-- Trigger/Open The Modal -->\n<button id=\"myBtn\">Open Modal</button>\n\n<!-- The Modal -->\n<div id=\"myModal\" class=\"modal\">\n\n  <!-- Modal content -->\n  <div class=\"modal-content\">\n    <span class=\"close\">&times;</span>\n    <p>Some text in the Modal..</p>\n  </div>\n\n</div>"
 
 /***/ }),
 
@@ -365,7 +365,26 @@ var DashboardComponent = /** @class */ (function () {
     };
     DashboardComponent.prototype.edit = function (id) {
         alert(id);
-        document.getElementById('editModal').style.display = 'block';
+        // Get the modal
+        var modal = document.getElementById('myModal');
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        // When the user clicks on the button, open the modal 
+        btn.onclick = function () {
+            modal.style.display = "block";
+        };
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        };
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        };
     };
     DashboardComponent.prototype.delete = function (id) {
         var _this = this;
