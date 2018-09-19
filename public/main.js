@@ -389,16 +389,10 @@ var DashboardComponent = /** @class */ (function () {
         this.eda.access_token = this.token.get();
         if (this.role == 'CompanyAdmin')
             this.router.navigateByUrl("/users");
-        alert(this.role);
         if (this.role == "Student" || this.role == "Parent")
             this.staff = false;
         else
             this.staff = true;
-        alert(this.staff);
-        if (this.role == "CompanyAdmin")
-            this.staff = true;
-        else
-            this.staff = false;
         return this.api.post('notice/get', this.form).subscribe(function (data) { return _this.handler(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
     };
     DashboardComponent.prototype.handler = function (data) {
