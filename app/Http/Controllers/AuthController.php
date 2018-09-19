@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use App\Http\Requests\signUpRequest;
+use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
