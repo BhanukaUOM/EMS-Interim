@@ -288,7 +288,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\" style=\"margin-top: 30px;\">\n  <a class=\"text-white btn btn-info\" routerLink=\"/signup\" *ngIf=\"role=='CompanyAdmin'\">Add New User</a> \n</div>\n<br>\n<hr>\n<br>\n<div class=\"card-deck\">\n    <div class=\"card\" *ngFor=\"let n of notice\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\">{{ n.title }}</h5>\n        <p class=\"card-text\">{{ n.notice }}</p>\n      </div>\n      <div class=\"card-footer text-center\">\n        <small class=\"text-muted\">{{ n.updated_at }}</small><br>\n        <div>\n          <a href=\"javascript:void(0)\" class=\"item\"  (click)='pause( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Pause\" style=\"padding-right: 10px;\">\n              <i class=\"fa fa-pause\"></i>\n          </a>   \n          <a href=\"javascript:void(0)\" class=\"item\"  data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edit\" style=\"padding-right: 10px;\">\n              <i class=\"fa fa-edit\"></i>\n          </a> \n          <a href=\"javascript:void(0)\" class=\"item\"  data-toggle=\"tooltip\" data-placement=\"top\" title=\"Delete\" style=\"padding-right: 10px;\">\n              <i class=\"fa fa-trash\"></i>\n          </a> \n        </div>\n      </div>\n    </div>\n  </div>"
+module.exports = "<div class=\"container\" style=\"margin-top: 30px;\">\n  <a class=\"text-white btn btn-info\" routerLink=\"/signup\" *ngIf=\"role=='CompanyAdmin'\">Add New User</a> \n</div>\n<br>\n<hr>\n<br>\n<div class=\"card-deck\">\n    <div class=\"card\" *ngFor=\"let n of notice\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\">{{ n.title }}</h5>\n        <p class=\"card-text\">{{ n.notice }}</p>\n      </div>\n      <div class=\"card-footer text-center\">\n        <small class=\"text-muted\">{{ n.updated_at }}</small><br>\n        <div>\n          <a href=\"javascript:void(0)\" class=\"item\"  (click)='pause( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Pause\" style=\"padding-right: 10px;\">\n              <i class=\"fa fa-pause\"></i>\n          </a>   \n          <a href=\"javascript:void(0)\" class=\"item\"  (click)='edit( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edit\" style=\"padding-right: 10px;\">\n              <i class=\"fa fa-edit\"></i>\n          </a> \n          <a href=\"javascript:void(0)\" class=\"item\"  (click)='delete( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Delete\" style=\"padding-right: 10px;\">\n              <i class=\"fa fa-trash\"></i>\n          </a> \n        </div>\n      </div>\n    </div>\n  </div>"
 
 /***/ }),
 
@@ -331,6 +331,11 @@ var DashboardComponent = /** @class */ (function () {
             email: null,
             access_token: null
         };
+        this.formid = {
+            email: null,
+            access_token: null,
+            id: 0
+        };
         this.notice = null;
         this.user = null;
         this.role = null;
@@ -341,6 +346,8 @@ var DashboardComponent = /** @class */ (function () {
         this.role = this.user.role;
         this.form.email = this.user.email;
         this.form.access_token = this.token.get();
+        this.formid.email = this.user.email;
+        this.formid.access_token = this.token.get();
         return this.api.post('notice/get', this.form).subscribe(function (data) { return _this.handler(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
     };
     DashboardComponent.prototype.handler = function (data) {
@@ -348,7 +355,18 @@ var DashboardComponent = /** @class */ (function () {
         //this.notice = JSON.parse(data);
         this.notice = data;
     };
+    DashboardComponent.prototype.notifi = function (data) {
+        this.notify.info(data.data, { timeout: 2000 });
+    };
     DashboardComponent.prototype.pause = function (id) {
+        var _this = this;
+        this.formid.id = id;
+        return this.api.post('notice/pause', this.formid).subscribe(function (data) { return _this.notifi(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
+    };
+    DashboardComponent.prototype.edit = function (id) {
+        alert(id);
+    };
+    DashboardComponent.prototype.delete = function (id) {
         alert(id);
     };
     DashboardComponent = __decorate([
