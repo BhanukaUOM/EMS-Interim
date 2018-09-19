@@ -288,7 +288,7 @@ module.exports = "/* The Modal (background) */\r\n.modal {\r\n    display: none;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\" style=\"margin-top: 30px;\">\n  <a class=\"text-white btn btn-info\" routerLink=\"/signup\" *ngIf=\"role=='CompanyAdmin'\">Add New User</a> \n</div>\n<br>\n<hr>\n<br>\n<div class=\"container\">\n  <div class=\"card-deck\">\n      <div class=\"card\" *ngFor=\"let n of notice\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">{{ n.title }}</h5>\n          <p class=\"card-text\">{{ n.notice }}</p>\n        </div>\n        <div class=\"card-footer text-center\">\n          <small class=\"text-muted\">{{ n.updated_at }}</small><br>\n          <div>\n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='pause( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Pause\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-pause\"></i>\n            </a>   \n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='edit( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edit\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-edit\"></i>\n            </a> \n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='delete( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Delete\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-trash\"></i>\n            </a> \n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n<!-- Trigger/Open The Modal -->\n<button id=\"myBtn\">Open Modal</button>\n\n<!-- The Modal -->\n<div id=\"myModal\" class=\"modal\">\n\n  <!-- Modal content -->\n  <div class=\"modal-content\">\n    <span class=\"close\">&times;</span>\n    <p>Some text in the Modal..</p>\n  </div>\n\n</div>\n\n<script>\n  // Get the modal\nvar modal = document.getElementById('myModal');\n\n// Get the button that opens the modal\nvar btn = document.getElementById(\"myBtn\");\n\n// Get the <span> element that closes the modal\nvar span = document.getElementsByClassName(\"close\")[0];\n\n// When the user clicks on the button, open the modal \nbtn.onclick = function() {\n    modal.style.display = \"block\";\n}\n\n// When the user clicks on <span> (x), close the modal\nspan.onclick = function() {\n    modal.style.display = \"none\";\n}\n\n// When the user clicks anywhere outside of the modal, close it\nwindow.onclick = function(event) {\n    if (event.target == modal) {\n        modal.style.display = \"none\";\n    }\n}\n</script>"
+module.exports = "<div class=\"container\" style=\"margin-top: 30px;\">\n  <a class=\"text-white btn btn-info\" routerLink=\"/signup\" *ngIf=\"role=='CompanyAdmin'\">Add New User</a> \n</div>\n<br>\n<hr>\n<br>\n<div class=\"container\">\n  <div class=\"card-deck\">\n      <div class=\"card\" *ngFor=\"let n of notice\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">{{ n.title }}</h5>\n          <p class=\"card-text\">{{ n.notice }}</p>\n        </div>\n        <div class=\"card-footer text-center\">\n          <small class=\"text-muted\">{{ n.updated_at }}</small><br>\n          <div>\n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='pause( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Pause\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-pause\"></i>\n            </a>   \n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='edit( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edit\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-edit\"></i>\n            </a> \n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='delete( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Delete\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-trash\"></i>\n            </a> \n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n<!-- Trigger/Open The Modal -->\n<button id=\"myBtn\">Open Modal</button>\n\n<!-- The Modal -->\n<div id=\"myModal\" class=\"modal\">\n\n  <!-- Modal content -->\n  <div class=\"modal-content\">\n    <span class=\"close\">&times;</span>\n    <p>Some text in the Modal..</p>\n  </div>\n\n</div>"
 
 /***/ }),
 
@@ -365,6 +365,21 @@ var DashboardComponent = /** @class */ (function () {
     };
     DashboardComponent.prototype.edit = function (id) {
         alert(id);
+        // Get the modal
+        var modal = document.getElementById('myModal');
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        modal.style.display = "block";
+        // When the user clicks on <span> (x), close the modal
+        // span.onclick = function() {
+        //     modal.style.display = "none";
+        // }
+        // // When the user clicks anywhere outside of the modal, close it
+        // window.onclick = function(event) {
+        //     if (event.target == modal) {
+        //         modal.style.display = "none";
+        //     }
+        // }
     };
     DashboardComponent.prototype.delete = function (id) {
         var _this = this;
