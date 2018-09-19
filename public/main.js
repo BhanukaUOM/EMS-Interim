@@ -1025,7 +1025,7 @@ var ProfileComponent = /** @class */ (function () {
             buttons: [
                 { text: 'Yes', action: function () {
                         _this.formid.id = id;
-                        _this.api.post('notice/delete', _this.formid).subscribe(function (data) { return _this.notifi(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
+                        _this.api.post('users/delete', _this.formid).subscribe(function (data) { return _this.notifi(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
                     }, bold: false },
                 { text: 'No' }
             ]
