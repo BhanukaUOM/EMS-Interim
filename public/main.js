@@ -366,7 +366,7 @@ var DashboardComponent = /** @class */ (function () {
     DashboardComponent.prototype.edit = function (id) {
         var _this = this;
         this.formid.id = id;
-        return this.api.post('notice/editbyid', this.formid).subscribe(function (data) { return console.log(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
+        return this.api.post('notice/getbyid', this.formid).subscribe(function (data) { return console.log(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
         //var modal = document.getElementById('modal');
         //modal.style.display = "block";
     };
