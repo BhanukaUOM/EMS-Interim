@@ -923,7 +923,15 @@ var ResponseResetComponent = /** @class */ (function () {
     };
     ResponseResetComponent.prototype.onSubmit = function () {
         var _this = this;
-        return this.api.post('responsePasswordReset', this.form).subscribe(function (data) { return _this.resetHandler(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
+        return this.api.post('responsePasswordReset', this.form).subscribe(function (data) { return _this.resetHandler(data); }, function (error) { return _this.handleerror(error); });
+    };
+    ResponseResetComponent.prototype.handleerror = function (error) {
+        if (error.error.error) {
+            if (error.error.error.email)
+                this.notify.error(error.error.error.email, { timeout: 0 });
+            if (error.error.error.password)
+                this.notify.error(error.error.error.password, { timeout: 0 });
+        }
     };
     ResponseResetComponent.prototype.resetHandler = function (data) {
         this.notify.info(data.data, { timeout: 2000 });
