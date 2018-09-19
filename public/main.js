@@ -374,7 +374,6 @@ var DashboardComponent = /** @class */ (function () {
         this.role = null;
         this.staff = false;
         this.admin = false;
-        this.count = 0;
     }
     DashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -394,7 +393,6 @@ var DashboardComponent = /** @class */ (function () {
             this.staff = false;
         else
             this.staff = true;
-        this.count = 0;
         return this.api.post('notice/get', this.form).subscribe(function (data) { return _this.handler(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
     };
     DashboardComponent.prototype.handler = function (data) {
