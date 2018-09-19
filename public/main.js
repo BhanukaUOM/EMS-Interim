@@ -288,7 +288,7 @@ module.exports = "html {\r\n    height: 100%;\r\n}\r\n\r\nbody {\r\n    height: 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\" style=\"margin-top: 30px;\">\n  <a class=\"text-white btn btn-info\" routerLink=\"/signup\" *ngIf=\"role=='CompanyAdmin'\">Add New User</a> \n</div>\n\n<div>\n    <tbody>\n        <tr *ngFor=\"let driver of notice\">\n          <td>{{driver.notice}}</td>\n          <td>{{driver.id}}</td>\n        </tr>\n      </tbody>\n    I am getting \n</div>"
+module.exports = "<div class=\"container\" style=\"margin-top: 30px;\">\n  <a class=\"text-white btn btn-info\" routerLink=\"/signup\" *ngIf=\"role=='CompanyAdmin'\">Add New User</a> \n</div>\n\n<div class=\"card-deck\">\n    <div class=\"card\" *ngFor=\"let n of notice\">\n      <img class=\"card-img-top\" src=\"...\" alt=\"Card image cap\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\">{{ n.title }}</h5>\n        <p class=\"card-text\">{{ n.notice }}</p>\n      </div>\n      <div class=\"card-footer\">\n        <small class=\"text-muted\">Last updated 3 mins ago</small>\n      </div>\n    </div>\n  </div>"
 
 /***/ }),
 
