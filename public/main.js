@@ -678,7 +678,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-dark bg-dark\">\n  <a class=\"navbar-brand text-white\" routerLink=\"\">EMS</a>\n    <div class=\"\">\n        <a class=\"text-white\" routerLink=\"login\" style=\"padding-right: 20px;\" *ngIf=\"!loggedIn\">Login</a> \n        <a class=\"text-white\" routerLink=\"users\" style=\"padding-right: 20px;\" *ngIf='role'>Users</a>\n        <a class=\"text-white\" routerLink=\"notice\" style=\"padding-right: 20px;\" *ngIf=\"loggedIn\">Notice</a>\n        <a class=\"text-white\" href=\"javascript:void(0)\" (click)=\"logout($event)\" style=\"padding-right: 20px;\" *ngIf=\"loggedIn\">Logout</a>  \n    </div>\n</nav>"
+module.exports = "<nav class=\"navbar navbar-dark bg-dark\">\n  <a class=\"navbar-brand text-white\" routerLink=\"\">EMS</a>\n    <div class=\"\">\n        <a class=\"text-white\" routerLink=\"login\" style=\"padding-right: 20px;\" *ngIf=\"!loggedIn\">Login</a> \n        <a class=\"text-white\" routerLink=\"users\" style=\"padding-right: 20px;\" *ngIf='role'>Users</a>\n        <a class=\"text-white\" routerLink=\"notice\" style=\"padding-right: 20px;\" *ngIf=\"notice\">Notice</a>\n        <a class=\"text-white\" href=\"javascript:void(0)\" (click)=\"logout($event)\" style=\"padding-right: 20px;\" *ngIf=\"loggedIn\">Logout</a>  \n    </div>\n</nav>"
 
 /***/ }),
 
@@ -718,14 +718,19 @@ var NavbarComponent = /** @class */ (function () {
         this.token = token;
         this.notify = notify;
         this.role = false;
+        this.notice = false;
     }
     NavbarComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.auth.authStatus.subscribe(function (value) { return _this.loggedIn = value; });
-        if (JSON.parse(this.token.getUser()).role == "SchoolAdmin")
+        if (JSON.parse(this.token.getUser()).role == "CompanyAdmin" || JSON.parse(this.token.getUser()).role == "SchoolAdmin")
             this.role = true;
         else
             this.role = false;
+        if (JSON.parse(this.token.getUser()).role == "SchoolAdmin")
+            this.notice = true;
+        else
+            this.notice = false;
         //console.log(this.loggedIn);
     };
     NavbarComponent.prototype.logout = function (Event) {
