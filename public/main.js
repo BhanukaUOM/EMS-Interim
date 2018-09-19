@@ -393,7 +393,7 @@ var DashboardComponent = /** @class */ (function () {
         this.ed.title = this.not.title;
         this.ed.notice = this.not.notice;
         this.ed.role = this.not.role;
-        return this.api.post('notice/edit', this.ed).subscribe(function (data) { return _this.notifi(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
+        return this.api.post('notice/update', this.ed).subscribe(function (data) { return _this.notifi(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
     };
     DashboardComponent.prototype.close = function () {
         var modal = document.getElementById('modal');
