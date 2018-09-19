@@ -288,7 +288,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\" style=\"margin-top: 30px;\">\n  <a class=\"text-white btn btn-info\" routerLink=\"/signup\" *ngIf=\"role=='CompanyAdmin'\">Add New User</a> \n</div>\n<br>\n<hr>\n<br>\n<div class=\"container\">\n  <div class=\"card-deck\">\n      <div class=\"card\" *ngFor=\"let n of notice\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">{{ n.title }}</h5>\n          <p class=\"card-text\">{{ n.notice }}</p>\n        </div>\n        <div class=\"card-footer text-center\">\n          <small class=\"text-muted\">{{ n.updated_at }}</small><br>\n          <div>\n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='pause( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Pause\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-pause\"></i>\n            </a>   \n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='edit( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edit\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-edit\"></i>\n            </a> \n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='delete( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Delete\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-trash\"></i>\n            </a> \n          </div>\n        </div>\n      </div>\n    </div>\n  </div>"
+module.exports = "<div class=\"container\" style=\"margin-top: 30px;\">\n  <a class=\"text-white btn btn-info\" routerLink=\"/signup\" *ngIf=\"role=='CompanyAdmin'\">Add New User</a> \n</div>\n<br>\n<hr>\n<br>\n<div class=\"container\">\n  <div class=\"card-deck\">\n      <div class=\"card\" *ngFor=\"let n of notice\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">{{ n.title }}</h5>\n          <p class=\"card-text\">{{ n.notice }}</p>\n        </div>\n        <div class=\"card-footer text-center\">\n          <small class=\"text-muted\">{{ n.updated_at }}</small><br>\n          <div>\n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='pause( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Pause\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-pause\"></i>\n            </a>   \n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='edit( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edit\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-edit\"></i>\n            </a> \n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='delete( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Delete\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-trash\"></i>\n            </a> \n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <!-- Button trigger modal -->\n<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModal\">\n    Launch demo modal\n  </button>\n  \n  <!-- Modal -->\n  <div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n    <div class=\"modal-dialog\" role=\"document\">\n      <div class=\"modal-content\">\n        <div class=\"modal-header\">\n          <h5 class=\"modal-title\" id=\"exampleModalLabel\">Modal title</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n          ...\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n          <button type=\"button\" class=\"btn btn-primary\">Save changes</button>\n        </div>\n      </div>\n    </div>\n  </div>"
 
 /***/ }),
 
@@ -367,18 +367,11 @@ var DashboardComponent = /** @class */ (function () {
         alert(id);
     };
     DashboardComponent.prototype.delete = function (id) {
-        // if (confirm('Are you sure you want to detele this Notice?')) {
-        //   this.formid.id = id;
-        //   return this.api.post('notice/delete', this.formid).subscribe(
-        //     data => this.notifi(data),
-        //     error => this.notify.error(error.error.error, {timeout:0})
-        //   );
-        // }
         var _this = this;
         this.notify.confirm('Are you sure you want to detele this Notice?', 'Delete Notice', {
             timeout: 0,
             showProgressBar: false,
-            closeOnClick: false,
+            closeOnClick: true,
             pauseOnHover: true,
             buttons: [
                 { text: 'Yes', action: function () {
