@@ -637,6 +637,7 @@ var LoginComponent = /** @class */ (function () {
             this.router.navigateByUrl('/users');
         else
             this.router.navigateByUrl('/notice');
+        location.reload();
     };
     LoginComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
