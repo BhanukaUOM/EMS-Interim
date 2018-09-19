@@ -744,6 +744,7 @@ var NavbarComponent = /** @class */ (function () {
         this.token.remove();
         this.auth.changeAuthStatus(false);
         this.router.navigateByUrl('/login');
+        location.reload();
     };
     NavbarComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
