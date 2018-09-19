@@ -136,13 +136,13 @@ class AuthController extends Controller
             if($role=='CompanyAdmin'){
                 if(User::where('role', 'CompanyAdmin')->count()<2)
                     return response()->json(['error' => 'Need least one Admin!'],Response::HTTP_UNPROCESSABLE_ENTITY);
-                $user = User::find($id);
+                $user = User::find($request -> id);
                 $user->delete();
 
                 return response()->json(['data' => 'Successfully Deleted']);
-        }
+            }
             else
-            return response()->json(['error' => 'No Access!'],Response::HTTP_UNPROCESSABLE_ENTITY);
+                return response()->json(['error' => 'No Access!'],Response::HTTP_UNPROCESSABLE_ENTITY);
         } else {
             return response()->json(['error' => 'Token incorrect'],Response::HTTP_UNPROCESSABLE_ENTITY);
         }
