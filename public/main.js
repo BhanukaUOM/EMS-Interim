@@ -459,6 +459,7 @@ var DashboardComponent = /** @class */ (function () {
         this.closeadd();
         //console.log(this.formid.id);
         this.api.post('notice/add', this.eda).subscribe(function (data) { return _this.notifi(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
+        setTimeout(2000);
         this.ngOnInit();
     };
     DashboardComponent = __decorate([
