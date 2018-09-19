@@ -393,13 +393,13 @@ var DashboardComponent = /** @class */ (function () {
     DashboardComponent.prototype.notifi = function (data) {
         //console.log(data);
         this.notify.info(data.data, { timeout: 2000 });
+        setTimeout(1000);
+        this.ngOnInit();
     };
     DashboardComponent.prototype.pause = function (id) {
         var _this = this;
         this.formid.id = id;
         this.api.post('notice/pause', this.formid).subscribe(function (data) { return _this.notifi(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
-        setTimeout(2000);
-        this.ngOnInit();
     };
     DashboardComponent.prototype.noticebyid = function (data) {
         this.not = data[0];
@@ -420,8 +420,6 @@ var DashboardComponent = /** @class */ (function () {
         this.ed.id = this.formid.id;
         //console.log(this.formid.id);
         this.api.post('notice/update', this.ed).subscribe(function (data) { return _this.notifi(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
-        setTimeout(1000);
-        this.ngOnInit();
     };
     DashboardComponent.prototype.close = function () {
         var modal = document.getElementById('modal');
@@ -461,8 +459,6 @@ var DashboardComponent = /** @class */ (function () {
         this.closeadd();
         //console.log(this.formid.id);
         this.api.post('notice/add', this.eda).subscribe(function (data) { return _this.notifi(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
-        setTimeout(2000);
-        this.ngOnInit();
     };
     DashboardComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
