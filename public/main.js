@@ -736,8 +736,8 @@ var NavbarComponent = /** @class */ (function () {
         this.notify.info("Logout Succesfully", { timeout: 2000 });
         this.token.remove();
         this.auth.changeAuthStatus(false);
-        this.ngOnInit();
         this.router.navigateByUrl('/login');
+        this.ngOnInit();
     };
     NavbarComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
