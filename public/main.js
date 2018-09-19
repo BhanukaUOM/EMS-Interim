@@ -307,6 +307,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _services_api_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/api.service */ "./src/app/services/api.service.ts");
 /* harmony import */ var ng_snotify__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ng-snotify */ "./node_modules/ng-snotify/index.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -321,10 +322,12 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var DashboardComponent = /** @class */ (function () {
-    function DashboardComponent(token, http, api, notify) {
+    function DashboardComponent(token, http, router, api, notify) {
         this.token = token;
         this.http = http;
+        this.router = router;
         this.api = api;
         this.notify = notify;
         this.form = {
@@ -393,7 +396,8 @@ var DashboardComponent = /** @class */ (function () {
         this.close();
         this.ed.id = this.formid.id;
         //console.log(this.formid.id);
-        return this.api.post('notice/update', this.ed).subscribe(function (data) { return _this.notifi(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
+        this.api.post('notice/update', this.ed).subscribe(function (data) { return _this.notifi(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
+        this.router.navigateByUrl('/dashboard');
     };
     DashboardComponent.prototype.close = function () {
         var modal = document.getElementById('modal');
@@ -421,7 +425,7 @@ var DashboardComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./dashboard.component.html */ "./src/app/components/dashboard/dashboard.component.html"),
             styles: [__webpack_require__(/*! ./dashboard.component.css */ "./src/app/components/dashboard/dashboard.component.css")]
         }),
-        __metadata("design:paramtypes", [_services_token_service__WEBPACK_IMPORTED_MODULE_1__["TokenService"], _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _services_api_service__WEBPACK_IMPORTED_MODULE_3__["ApiService"], ng_snotify__WEBPACK_IMPORTED_MODULE_4__["SnotifyService"]])
+        __metadata("design:paramtypes", [_services_token_service__WEBPACK_IMPORTED_MODULE_1__["TokenService"], _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _services_api_service__WEBPACK_IMPORTED_MODULE_3__["ApiService"], ng_snotify__WEBPACK_IMPORTED_MODULE_4__["SnotifyService"]])
     ], DashboardComponent);
     return DashboardComponent;
 }());
