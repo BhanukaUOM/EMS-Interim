@@ -630,7 +630,6 @@ var LoginComponent = /** @class */ (function () {
         return this.api.post('login', this.form).subscribe(function (data) { return _this.tokenHandler(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
     };
     LoginComponent.prototype.tokenHandler = function (data) {
-        this.notify.info("Login Succesfully", { timeout: 2000 });
         this.token.set(data);
         this.auth.changeAuthStatus(true);
         if (JSON.parse(this.token.getUser()).role == "CompanyAdmin" || JSON.parse(this.token.getUser()).role == "SchoolAdmin")
@@ -638,6 +637,7 @@ var LoginComponent = /** @class */ (function () {
         else
             this.router.navigateByUrl('/notice');
         location.reload();
+        this.notify.info("Login Succesfully", { timeout: 2000 });
     };
     LoginComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -740,11 +740,11 @@ var NavbarComponent = /** @class */ (function () {
     NavbarComponent.prototype.logout = function (Event) {
         if (Event === void 0) { Event = MouseEvent; }
         event.preventDefault;
-        this.notify.info("Logout Succesfully", { timeout: 2000 });
         this.token.remove();
         this.auth.changeAuthStatus(false);
         this.router.navigateByUrl('/login');
         location.reload();
+        this.notify.info("Logout Succesfully", { timeout: 2000 });
     };
     NavbarComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
