@@ -87,7 +87,7 @@ var appRoutes = [
     {
         path: 'users',
         component: _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_11__["ProfileComponent"],
-        canActivate: [_services_afterLogin__WEBPACK_IMPORTED_MODULE_6__["AfterLoginService"]]
+        canActivate: [_services_is_company_admin_service__WEBPACK_IMPORTED_MODULE_10__["IsCompanyAdminService"]]
     },
     {
         path: '',
@@ -96,7 +96,7 @@ var appRoutes = [
     {
         path: 'dashboard',
         component: _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_11__["ProfileComponent"],
-        canActivate: [_services_afterLogin__WEBPACK_IMPORTED_MODULE_6__["AfterLoginService"]]
+        canActivate: [_services_is_company_admin_service__WEBPACK_IMPORTED_MODULE_10__["IsCompanyAdminService"]]
     },
     {
         path: 'notice',
@@ -1006,6 +1006,8 @@ var ProfileComponent = /** @class */ (function () {
         this.role = this.user.role;
         this.form.email = this.user.email;
         this.form.access_token = this.token.get();
+        if (this.role != 'CompanyAdmin')
+            this.router.navigateByUrl("/notice");
         return this.api.post('users/get', this.form).subscribe(function (data) { return _this.handler(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
     };
     ProfileComponent.prototype.handler = function (data) {
