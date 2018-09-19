@@ -36,6 +36,33 @@ class NoticeController extends Controller
         }
     }
 
+    public function byid(Request $request){
+        $this->validate($request, [
+            'access_token' => 'required',
+            'email' => 'required',            
+            'notice'  => 'required',
+            'role' => 'required',
+            'id' => 'required'
+        ]);
+
+        $token = $request->access_token;
+        $email = $request->email;
+        if((json_decode(base64_decode(explode('.', $token)[1]))->iss=='https://ems.aladinlabs.com/api/login') || (json_decode(base64_decode(explode('.', $token)[1]))->iss=='https://ems.aladinlabs.com/api/signup')){
+            $user = User::where('email', $email)->first();
+            if($user==null)
+                return response()->json(['error' => 'Email incorrect'],Response::HTTP_UNPROCESSABLE_ENTITY);
+            $role = $user->role;
+            $id = $user->id;
+            //return DB::select('select * from notice, readstatus  where readstatus.userId = ?', $id);
+            if($role=='CompanyAdmin' || $role=='SchoolAdmin' || $role=='Teacher')
+                return json_encode(DB::select('select * from notices where id = ?', [$request->id]));
+            else
+            return response()->json(['error' => 'No Permission to Edit Notice'],Response::HTTP_UNPROCESSABLE_ENTITY);
+        } else {
+            return response()->json(['error' => 'Token incorrect'],Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+    }
+
     public function add(Request $request){
         $this->validate($request, [
             'access_token' => 'required',

@@ -23,6 +23,7 @@ Route::group([
     Route::post('notice/delete', 'NoticeController@delete');
     Route::post('notice/read', 'NoticeController@read');
     Route::post('notice/readStatus', 'NoticeController@readStatus');
+    Route::post('notice/getbyid', 'NoticeController@byid');
 
     Route::get('{any}', function () {
         return 'Unortharized!';
