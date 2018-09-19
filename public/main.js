@@ -367,7 +367,7 @@ var DashboardComponent = /** @class */ (function () {
         this.notice = data;
     };
     DashboardComponent.prototype.notifi = function (data) {
-        console.log(data);
+        //console.log(data);
         this.notify.info(data.data, { timeout: 2000 });
     };
     DashboardComponent.prototype.pause = function (id) {
