@@ -631,7 +631,10 @@ var LoginComponent = /** @class */ (function () {
         this.notify.info("Login Succesfully", { timeout: 2000 });
         this.token.set(data);
         this.auth.changeAuthStatus(true);
-        this.router.navigateByUrl('/dashboard');
+        if (JSON.parse(this.token.getUser()).role == "CompanyAdmin")
+            this.router.navigateByUrl('/users');
+        else
+            this.router.navigateByUrl('/notice');
     };
     LoginComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -961,10 +964,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileComponent", function() { return ProfileComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _services_token_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/token.service */ "./src/app/services/token.service.ts");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _services_api_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/api.service */ "./src/app/services/api.service.ts");
-/* harmony import */ var ng_snotify__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ng-snotify */ "./node_modules/ng-snotify/index.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_api_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/api.service */ "./src/app/services/api.service.ts");
+/* harmony import */ var ng_snotify__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ng-snotify */ "./node_modules/ng-snotify/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -979,11 +981,9 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
 var ProfileComponent = /** @class */ (function () {
-    function ProfileComponent(token, http, router, api, notify) {
+    function ProfileComponent(token, router, api, notify) {
         this.token = token;
-        this.http = http;
         this.router = router;
         this.api = api;
         this.notify = notify;
@@ -1042,10 +1042,9 @@ var ProfileComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./profile.component.css */ "./src/app/components/profile/profile.component.css")]
         }),
         __metadata("design:paramtypes", [_services_token_service__WEBPACK_IMPORTED_MODULE_1__["TokenService"],
-            _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
-            _services_api_service__WEBPACK_IMPORTED_MODULE_4__["ApiService"],
-            ng_snotify__WEBPACK_IMPORTED_MODULE_5__["SnotifyService"]])
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
+            _services_api_service__WEBPACK_IMPORTED_MODULE_3__["ApiService"],
+            ng_snotify__WEBPACK_IMPORTED_MODULE_4__["SnotifyService"]])
     ], ProfileComponent);
     return ProfileComponent;
 }());
