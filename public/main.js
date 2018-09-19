@@ -288,7 +288,7 @@ module.exports = "/* The Modal (background) */\r\n.modal {\r\n    display: none;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\" style=\"margin-top: 30px;\">\n  <a class=\"text-white btn btn-info\" routerLink=\"/signup\" *ngIf=\"role=='CompanyAdmin'\">Add New User</a> \n</div>\n<br>\n<hr>\n<br>\n<div class=\"container\">\n  <div class=\"card-deck\">\n      <div class=\"card\" *ngFor=\"let n of notice\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">{{ n.title }}</h5>\n          <p class=\"card-text\">{{ n.notice }}</p>\n        </div>\n        <div class=\"card-footer text-center\">\n          <small class=\"text-muted\">{{ n.updated_at }}</small><br>\n          <div>\n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='pause( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Pause\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-pause\"></i>\n            </a>   \n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='edit( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edit\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-edit\"></i>\n            </a> \n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='delete( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Delete\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-trash\"></i>\n            </a> \n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n<!-- Trigger/Open The Modal -->\n<button id=\"myBtn\">Open Modal</button>\n\n<!-- The Modal -->\n<div id=\"myModal\" class=\"modal\">\n\n  <!-- Modal content -->\n  <div class=\"modal-content\">\n    <span class=\"close\">&times;</span>\n    <p>Some text in the Modal..</p>\n  </div>\n\n</div>"
+module.exports = "<div class=\"container\" style=\"margin-top: 30px;\">\n  <a class=\"text-white btn btn-info\" routerLink=\"/signup\" *ngIf=\"role=='CompanyAdmin'\">Add New User</a> \n</div>\n<br>\n<hr>\n<br>\n<div class=\"container\">\n  <div class=\"card-deck\">\n      <div class=\"card\" *ngFor=\"let n of notice\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">{{ n.title }}</h5>\n          <p class=\"card-text\">{{ n.notice }}</p>\n        </div>\n        <div class=\"card-footer text-center\">\n          <small class=\"text-muted\">{{ n.updated_at }}</small><br>\n          <div>\n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='pause( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Pause\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-pause\"></i>\n            </a>   \n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='edit( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edit\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-edit\"></i>\n            </a> \n            <a href=\"javascript:void(0)\" class=\"item\"  (click)='delete( n.id )' data-toggle=\"tooltip\" data-placement=\"top\" title=\"Delete\" style=\"padding-right: 10px;\">\n                <i class=\"fa fa-trash\"></i>\n            </a> \n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n<!-- The Modal -->\n<div id=\"myModal\" class=\"modal\">\n\n    <div class=\"modal-dialog\" role=\"document\">\n        <div class=\"modal-content\">\n          <div class=\"modal-header\">\n            <h5 class=\"modal-title\">Modal title</h5>\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n              <span aria-hidden=\"true\">&times;</span>\n            </button>\n          </div>\n          <div class=\"modal-body\">\n            <p>Modal body text goes here.</p>\n          </div>\n          <div class=\"modal-footer\">\n            <button type=\"button\" class=\"btn btn-primary\">Save changes</button>\n            <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n          </div>\n        </div>\n      </div>\n\n</div>"
 
 /***/ }),
 
@@ -364,22 +364,12 @@ var DashboardComponent = /** @class */ (function () {
         return this.api.post('notice/pause', this.formid).subscribe(function (data) { return _this.notifi(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
     };
     DashboardComponent.prototype.edit = function (id) {
-        alert(id);
-        // Get the modal
         var modal = document.getElementById('myModal');
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
         modal.style.display = "block";
-        // When the user clicks on <span> (x), close the modal
-        // span.onclick = function() {
-        //     modal.style.display = "none";
-        // }
-        // // When the user clicks anywhere outside of the modal, close it
-        // window.onclick = function(event) {
-        //     if (event.target == modal) {
-        //         modal.style.display = "none";
-        //     }
-        // }
+    };
+    DashboardComponent.prototype.close = function () {
+        var modal = document.getElementById('myModal');
+        modal.style.display = "none";
     };
     DashboardComponent.prototype.delete = function (id) {
         var _this = this;
