@@ -627,7 +627,7 @@ var LoginComponent = /** @class */ (function () {
         this.error = null;
     }
     LoginComponent.prototype.ngOnInit = function () {
-        this.nav.ngOnInit();
+        //this.nav.ngOnInit();
     };
     LoginComponent.prototype.onSubmit = function () {
         var _this = this;
