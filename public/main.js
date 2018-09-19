@@ -95,6 +95,11 @@ var appRoutes = [
     },
     {
         path: 'dashboard',
+        component: _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_11__["ProfileComponent"],
+        canActivate: [_services_afterLogin__WEBPACK_IMPORTED_MODULE_6__["AfterLoginService"]]
+    },
+    {
+        path: 'notice',
         component: _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_5__["DashboardComponent"],
         canActivate: [_services_afterLogin__WEBPACK_IMPORTED_MODULE_6__["AfterLoginService"]]
     }
@@ -633,7 +638,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-dark bg-dark\">\n  <a class=\"navbar-brand text-white\" routerLink=\"\">EMS</a>\n    <div class=\"\">\n        <a class=\"text-white\" routerLink=\"login\" style=\"padding-right: 20px;\" *ngIf=\"!loggedIn\">Login</a> \n        <a class=\"text-white\" routerLink=\"dashboard\" style=\"padding-right: 20px;\" *ngIf=\"loggedIn\">Users</a>\n        <a class=\"text-white\" routerLink=\"users\" style=\"padding-right: 20px;\" *ngIf=\"loggedIn\">Notice</a>\n        <a class=\"text-white\" href=\"javascript:void(0)\" (click)=\"logout($event)\" style=\"padding-right: 20px;\" *ngIf=\"loggedIn\">Logout</a>  \n    </div>\n</nav>"
+module.exports = "<nav class=\"navbar navbar-dark bg-dark\">\n  <a class=\"navbar-brand text-white\" routerLink=\"\">EMS</a>\n    <div class=\"\">\n        <a class=\"text-white\" routerLink=\"login\" style=\"padding-right: 20px;\" *ngIf=\"!loggedIn\">Login</a> \n        <a class=\"text-white\" routerLink=\"users\" style=\"padding-right: 20px;\" *ngIf=\"loggedIn\">Users</a>\n        <a class=\"text-white\" routerLink=\"notice\" style=\"padding-right: 20px;\" *ngIf=\"loggedIn\">Notice</a>\n        <a class=\"text-white\" href=\"javascript:void(0)\" (click)=\"logout($event)\" style=\"padding-right: 20px;\" *ngIf=\"loggedIn\">Logout</a>  \n    </div>\n</nav>"
 
 /***/ }),
 
