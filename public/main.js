@@ -390,7 +390,7 @@ var DashboardComponent = /** @class */ (function () {
         if (this.role == 'CompanyAdmin')
             this.router.navigateByUrl("/users");
         //alert(this.user);
-        if (this.role == "CompanyAdmin" || this.role == "SchoolAdmin" || this.role == "Teacher")
+        if (this.role == "SchoolAdmin" || this.role == "Teacher")
             this.staff = true;
         else
             this.staff = false;
