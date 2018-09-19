@@ -17,7 +17,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'signup', 'responsePasswordReset', 'sendPasswordReset']]);
+        $this->middleware('auth:api', ['except' => ['login', 'signup', 'responsePasswordReset', 'sendPasswordReset', 'get', 'delete']]);
     }
 
     public function signup(signUpRequest $request)
