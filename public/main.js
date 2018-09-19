@@ -389,7 +389,7 @@ var DashboardComponent = /** @class */ (function () {
         this.eda.access_token = this.token.get();
         if (this.role == 'CompanyAdmin')
             this.router.navigateByUrl("/users");
-        //alert(this.user);
+        alert(this.role);
         if (this.role == "Student" || this.role == "Parent")
             this.staff = false;
         else
