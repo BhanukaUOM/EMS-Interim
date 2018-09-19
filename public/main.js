@@ -720,14 +720,20 @@ var NavbarComponent = /** @class */ (function () {
     NavbarComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.auth.authStatus.subscribe(function (value) { return _this.loggedIn = value; });
-        if (JSON.parse(this.token.getUser()).role == "CompanyAdmin" || JSON.parse(this.token.getUser()).role == "SchoolAdmin")
-            this.role = true;
-        else
+        if (JSON.parse(this.token.getUser()) == null) {
             this.role = false;
-        if (JSON.parse(this.token.getUser()).role != "CompanyAdmin")
-            this.notice = true;
-        else
             this.notice = false;
+        }
+        else {
+            if (JSON.parse(this.token.getUser()).role == "CompanyAdmin" || JSON.parse(this.token.getUser()).role == "SchoolAdmin")
+                this.role = true;
+            else
+                this.role = false;
+            if (JSON.parse(this.token.getUser()).role != "CompanyAdmin")
+                this.notice = true;
+            else
+                this.notice = false;
+        }
         //console.log(this.loggedIn);
     };
     NavbarComponent.prototype.logout = function (Event) {
