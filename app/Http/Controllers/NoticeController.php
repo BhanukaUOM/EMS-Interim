@@ -116,7 +116,8 @@ class NoticeController extends Controller
             //return $role;
             //return DB::select('select * from notice, readstatus  where readstatus.userId = ?', $id);
             if($role=='CompanyAdmin' || $role=='SchoolAdmin' || $role=='Teacher'){
-                $notice = Notice::find($id)->first();
+                $notice = Notice::find($id);
+                return $notice;
                 $notice->notice = $request->notice;
                 $notice->role = $request->role;
                 $notice->save();
