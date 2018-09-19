@@ -288,7 +288,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\" style=\"margin-top: 30px;\">\n  <a class=\"text-white btn btn-info\" routerLink=\"/signup\" *ngIf=\"role=='CompanyAdmin'\">Add New User</a> \n</div>\n<br>\n<hr>\n<br>\n<div class=\"card-deck\">\n    <div class=\"card\" *ngFor=\"let n of notice\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\">{{ n.title }}</h5>\n        <p class=\"card-text\">{{ n.notice }}</p>\n      </div>\n      <div class=\"card-footer\">\n        <small class=\"text-muted text-center\">{{ n.updated_at }}</small><br>\n        <a href=\"\">\n          <p class=\"item\"  data-toggle=\"tooltip\" data-placement=\"top\" title=\"edit\">\n              <i class=\"fa fa-edit\"></i>\n          </p>\n      </a>   \n      </div>\n    </div>\n  </div>"
+module.exports = "<div class=\"container\" style=\"margin-top: 30px;\">\n  <a class=\"text-white btn btn-info\" routerLink=\"/signup\" *ngIf=\"role=='CompanyAdmin'\">Add New User</a> \n</div>\n<br>\n<hr>\n<br>\n<div class=\"card-deck\">\n    <div class=\"card\" *ngFor=\"let n of notice\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\">{{ n.title }}</h5>\n        <p class=\"card-text\">{{ n.notice }}</p>\n      </div>\n      <div class=\"card-footer\">\n        <small class=\"text-muted text-center\">{{ n.updated_at }}</small><br>\n        <div class=\"text-center\">\n          <a href=\"javascript:void(0)\" class=\"item\"  data-toggle=\"tooltip\" data-placement=\"top\" title=\"edit\">\n              <i class=\"fa fa-edit\"></i>\n          </a>   \n        </div>\n      </div>\n    </div>\n  </div>"
 
 /***/ }),
 
