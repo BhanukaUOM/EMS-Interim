@@ -119,7 +119,7 @@ class NoticeController extends Controller
                 $notice = Notice::find($id);
                 //return $id;
                 $notice->notice = $request->notice;
-                return $request->role;
+                //return $request->role;
                 $notice->role = $request->role;
                 $notice->save();
 
