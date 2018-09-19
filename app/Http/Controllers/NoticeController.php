@@ -159,11 +159,11 @@ class NoticeController extends Controller
                 if($notice -> active == true){
                     $notice -> active = false;
                     $notice->save();
-                    return response()->json(['pause' => 'Successfully Paused']);
+                    return response()->json(['data' => 'Successfully Paused']);
                 } else {
                     $notice -> active = true;
                     $notice->save();
-                    return response()->json(['active' => 'Successfully Activated']);
+                    return response()->json(['data' => 'Successfully Activated']);
                 }
             }
             else
