@@ -391,9 +391,6 @@ var DashboardComponent = /** @class */ (function () {
     DashboardComponent.prototype.editsub = function () {
         var _this = this;
         this.close();
-        this.ed.title = this.not.title;
-        this.ed.notice = this.not.notice;
-        this.ed.role = this.not.role;
         this.ed.id = this.formid.id;
         //console.log(this.formid.id);
         return this.api.post('notice/update', this.ed).subscribe(function (data) { return _this.notifi(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
