@@ -367,7 +367,11 @@ var DashboardComponent = /** @class */ (function () {
         alert(id);
     };
     DashboardComponent.prototype.delete = function (id) {
-        alert(id);
+        var _this = this;
+        if (confirm('Are you sure you want to detele this Notice?')) {
+            this.formid.id = id;
+            return this.api.post('notice/delete', this.formid).subscribe(function (data) { return _this.notifi(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
+        }
     };
     DashboardComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
