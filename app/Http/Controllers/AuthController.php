@@ -108,9 +108,10 @@ class AuthController extends Controller
             $role = $user->role;
             $id = $user->id;
             //return DB::select('select * from notice, readstatus  where readstatus.userId = ?', $id);
-            if($role=='CompanyAdmin' || $role="SchoolAdmin")
+            if($role=='CompanyAdmin')
                 return json_encode(DB::select('select * from users'));
-            else
+            else if($role=='SchoolAdmin')
+                return json_encode(DB::select('select * from users where role!="CompanyAdmin"'));
             return response()->json(['error' => 'No Access!'],Response::HTTP_UNPROCESSABLE_ENTITY);
         } else {
             return response()->json(['error' => 'Token incorrect'],Response::HTTP_UNPROCESSABLE_ENTITY);
