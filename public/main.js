@@ -288,7 +288,7 @@ module.exports = "html {\r\n    height: 100%;\r\n}\r\n\r\nbody {\r\n    height: 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\" style=\"margin-top: 30px;\">\n  <a class=\"text-white btn btn-info\" routerLink=\"/signup\" *ngIf=\"role=='CompanyAdmin'\">Add New User</a> \n</div>\n\n<div>\n</div>"
+module.exports = "<div class=\"container\" style=\"margin-top: 30px;\">\n  <a class=\"text-white btn btn-info\" routerLink=\"/signup\" *ngIf=\"role=='CompanyAdmin'\">Add New User</a> \n</div>\n\n<div>\n    <tbody>\n        <tr *ngFor=\"let driver of notice\">\n          <td>{{driver.notice}}</td>\n          <td>{{driver.id}}</td>\n        </tr>\n      </tbody>\n    I am getting \n</div>"
 
 /***/ }),
 
@@ -344,8 +344,9 @@ var DashboardComponent = /** @class */ (function () {
         return this.api.post('notice/get', this.form).subscribe(function (data) { return _this.handler(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
     };
     DashboardComponent.prototype.handler = function (data) {
-        console.log(JSON.parse(data));
+        //console.log(JSON.parse(data));
         //this.notice = JSON.parse(data);
+        this.notice = data;
     };
     DashboardComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
