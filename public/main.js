@@ -926,11 +926,11 @@ var ResponseResetComponent = /** @class */ (function () {
         return this.api.post('responsePasswordReset', this.form).subscribe(function (data) { return _this.resetHandler(data); }, function (error) { return _this.handleerror(error); });
     };
     ResponseResetComponent.prototype.handleerror = function (error) {
-        if (error.error.error) {
-            if (error.error.error.email)
-                this.notify.error(error.error.error.email, { timeout: 0 });
-            if (error.error.error.password)
-                this.notify.error(error.error.error.password, { timeout: 0 });
+        if (error.error.errors) {
+            if (error.error.errors.email)
+                this.notify.error(error.error.errors.email, { timeout: 0 });
+            if (error.error.errors.password)
+                this.notify.error(error.error.errors.password, { timeout: 0 });
         }
     };
     ResponseResetComponent.prototype.resetHandler = function (data) {
