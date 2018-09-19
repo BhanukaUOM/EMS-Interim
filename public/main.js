@@ -1008,6 +1008,8 @@ var ProfileComponent = /** @class */ (function () {
         this.role = this.user.role;
         this.form.email = this.user.email;
         this.form.access_token = this.token.get();
+        this.formid.email = this.user.email;
+        this.formid.access_token = this.token.get();
         if (this.role != 'CompanyAdmin')
             this.router.navigateByUrl("/notice");
         return this.api.post('users/get', this.form).subscribe(function (data) { return _this.handler(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
