@@ -386,6 +386,7 @@ var DashboardComponent = /** @class */ (function () {
         this.ed.access_token = this.token.get();
         this.eda.email = this.user.email;
         this.eda.access_token = this.token.get();
+        alert(this.user);
         if (this.user == "CompanyAdmin" || this.user == "SchoolAdmin" || this.user == "Teacher")
             this.staff = true;
         else
