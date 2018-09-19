@@ -27,6 +27,4 @@ Route::group([
     Route::get('{any}', function () {
         return 'Unortharized!';
     });
-
-    //Route::get('login', 'AuthController@login');
 });

@@ -277,7 +277,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "html {\r\n    height: 100%;\r\n}\r\n\r\nbody {\r\n    height: 100%;   \r\n    overflow: hidden;  /*makes the body non-scrollable (we will add scrolling to the sidebar and main content containers)*/\r\n    margin: 0px;  /*removes default style*/\r\n    display: flex;  /*enables flex content for its children*/\r\n    box-sizing: border-box;\r\n}\r\n\r\n.column {\r\n    height: 100%;  /*allows both columns to span the full height of the browser window*/\r\n    display: flex;\r\n    flex-direction: column;  /*places the left and right headers above the bottom content*/\r\n}\r\n\r\n#left {\r\n    flex-shrink: 0;  /*makes sure that content is not cut off in a smaller browser window*/\r\n}\r\n\r\n.top-left {\r\n    flex-shink: 0;\r\n}\r\n\r\n.top-right {\r\n    flex-shrink: 0;\r\n    display: inline-flex;\r\n}\r\n\r\nul {\r\n    display: inline-flex;\r\n    list-style: none;\r\n}\r\n\r\n.bottom {\r\n    flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/\r\n    overflow-y: auto;  /*adds scroll to this container*/\r\n}"
 
 /***/ }),
 
@@ -288,7 +288,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\" style=\"margin-top: 30px;\">\n  <a class=\"text-white btn btn-info\" routerLink=\"/signup\" >Add New User</a> \n</div>\n"
+module.exports = "<div class=\"container\" style=\"margin-top: 30px;\">\n  <a class=\"text-white btn btn-info\" routerLink=\"/signup\" *ngIf=\"role='CompanyAdmin'\">Add New User</a> \n</div>\n\n<div>\n  \n</div>"
 
 /***/ }),
 
@@ -304,6 +304,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DashboardComponent", function() { return DashboardComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _services_token_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/token.service */ "./src/app/services/token.service.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _services_api_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/api.service */ "./src/app/services/api.service.ts");
+/* harmony import */ var ng_snotify__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ng-snotify */ "./node_modules/ng-snotify/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -315,15 +318,29 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
+
+
 var DashboardComponent = /** @class */ (function () {
-    function DashboardComponent(token) {
+    function DashboardComponent(token, http, api, notify) {
         this.token = token;
+        this.http = http;
+        this.api = api;
+        this.notify = notify;
+        this.form = {
+            email: null,
+            access_token: null
+        };
         this.user = null;
         this.role = null;
     }
     DashboardComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.user = JSON.parse(this.token.getUser());
         this.role = this.user.role;
+        this.form.email = this.user.email;
+        this.form.access_token = this.token.get();
+        return this.api.post('notice/get', this.form).subscribe(function (data) { return console.log(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
     };
     DashboardComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -331,7 +348,7 @@ var DashboardComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./dashboard.component.html */ "./src/app/components/dashboard/dashboard.component.html"),
             styles: [__webpack_require__(/*! ./dashboard.component.css */ "./src/app/components/dashboard/dashboard.component.css")]
         }),
-        __metadata("design:paramtypes", [_services_token_service__WEBPACK_IMPORTED_MODULE_1__["TokenService"]])
+        __metadata("design:paramtypes", [_services_token_service__WEBPACK_IMPORTED_MODULE_1__["TokenService"], _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _services_api_service__WEBPACK_IMPORTED_MODULE_3__["ApiService"], ng_snotify__WEBPACK_IMPORTED_MODULE_4__["SnotifyService"]])
     ], DashboardComponent);
     return DashboardComponent;
 }());
@@ -358,7 +375,7 @@ module.exports = "img {\r\n    max-width: 100%;\r\n}"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ngx-spinner bdColor=\"rgba(51,51,51,0.8)\"\nsize=\"medium\"\ncolor=\"#fff\"\ntype=\"ball-scale-multiple\">\n<p style=\"font-size: 20px; color: white\">Loading...</p>></ngx-spinner>\n<img src=\"../../../assets/front.png\">\n"
+module.exports = "<ngx-spinner bdColor=\"rgba(51,51,51,0.8)\"\nsize=\"medium\"\ncolor=\"#fff\"\ntype=\"ball-scale-multiple\">\n<p style=\"font-size: 20px; color: white\">Loading...</p>></ngx-spinner>\n<img src=\"../../../assets/front.png\">\n\n"
 
 /***/ }),
 
