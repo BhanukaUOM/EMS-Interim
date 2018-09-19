@@ -172,4 +172,69 @@ class NoticeController extends Controller
             return response()->json(['error' => 'Token incorrect'],Response::HTTP_UNPROCESSABLE_ENTITY);
         }
     }
+
+    public function read(Request $request){
+        $this->validate($request, [
+            'access_token' => 'required',
+            'email' => 'required',
+            'id' => 'required'
+        ]);
+
+        $token = $request->access_token;
+        $email = $request->email;
+        $id = $request->id;
+        if((json_decode(base64_decode(explode('.', $token)[1]))->iss=='https://ems.aladinlabs.com/api/login') || (json_decode(base64_decode(explode('.', $token)[1]))->iss=='https://ems.aladinlabs.com/api/signup')){
+            $user = User::where('email', $email)->first();
+            if($user==null)
+                return response()->json(['error' => 'Email incorrect'],Response::HTTP_UNPROCESSABLE_ENTITY);
+            $role = $user->role;
+            $id = $request->id;
+            //return $role;
+            //return DB::select('select * from notice, readstatus  where readstatus.userId = ?', $id);
+            if(!($role=='CompanyAdmin' || $role=='SchoolAdmin' || $role=='Teacher')){
+                $readstatus = new readstatus;
+                $readstatus->userId = $$user->id;
+                $readstatus->noticeId = $id;
+                $readstatus->save();
+                
+                return response()->json(['data' => 'Marked as read']);
+            }
+            else
+                return response()->json(['error' => 'No Permission to read Notice'],Response::HTTP_UNPROCESSABLE_ENTITY);
+        } else {
+            return response()->json(['error' => 'Token incorrect'],Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+    }
+
+    public function readStatus(Request $request){
+        $this->validate($request, [
+            'access_token' => 'required',
+            'email' => 'required',
+            'id' => 'required'
+        ]);
+
+        $token = $request->access_token;
+        $email = $request->email;
+        $id = $request->id;
+        if((json_decode(base64_decode(explode('.', $token)[1]))->iss=='https://ems.aladinlabs.com/api/login') || (json_decode(base64_decode(explode('.', $token)[1]))->iss=='https://ems.aladinlabs.com/api/signup')){
+            $user = User::where('email', $email)->first();
+            if($user==null)
+                return response()->json(['error' => 'Email incorrect'],Response::HTTP_UNPROCESSABLE_ENTITY);
+            $role = $user->role;
+            $id = $request->id;
+            //return $role;
+            //return DB::select('select * from notice, readstatus  where readstatus.userId = ?', $id);
+            if($role!='CompanyAdmin' || $role!='SchoolAdmin' || $role!='Teacher'){
+                $readstatus = readstatus::where(['userId' => $user->id, 'noticeId' => $id])->count();
+                if($readstatus>0)
+                    return response()->json(['read' => 'true']);
+                else
+                    return response()->json(['read' => 'false']);
+            }
+            else
+                return response()->json(['error' => 'No Permission to delete Notice'],Response::HTTP_UNPROCESSABLE_ENTITY);
+        } else {
+            return response()->json(['error' => 'Token incorrect'],Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+    }
 }

@@ -21,6 +21,8 @@ Route::group([
     Route::post('notice/update', 'NoticeController@update');
     Route::post('notice/pause', 'NoticeController@pause');
     Route::post('notice/delete', 'NoticeController@delete');
+    Route::post('notice/read', 'NoticeController@read');
+    Route::post('notice/readStatus', 'NoticeController@readStatus');
 
     Route::get('{any}', function () {
         return 'Unortharized!';
