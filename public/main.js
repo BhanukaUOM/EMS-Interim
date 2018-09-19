@@ -367,6 +367,7 @@ var DashboardComponent = /** @class */ (function () {
         this.notice = data;
     };
     DashboardComponent.prototype.notifi = function (data) {
+        console.log(data);
         this.notify.info(data.data, { timeout: 2000 });
     };
     DashboardComponent.prototype.pause = function (id) {
@@ -394,7 +395,7 @@ var DashboardComponent = /** @class */ (function () {
         this.ed.notice = this.not.notice;
         this.ed.role = this.not.role;
         this.ed.id = this.formid.id;
-        console.log(this.formid.id);
+        //console.log(this.formid.id);
         return this.api.post('notice/update', this.ed).subscribe(function (data) { return _this.notifi(data); }, function (error) { return _this.notify.error(error.error.error, { timeout: 0 }); });
     };
     DashboardComponent.prototype.close = function () {
