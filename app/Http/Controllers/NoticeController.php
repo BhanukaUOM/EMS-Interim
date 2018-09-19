@@ -28,9 +28,9 @@ class NoticeController extends Controller
             $id = $user->id;
             //return DB::select('select * from notice, readstatus  where readstatus.userId = ?', $id);
             if($role=='CompanyAdmin' || $role=='SchoolAdmin' || $role=='Teacher')
-                return DB::select('select * from notices');
+                return json_encode(DB::select('select * from notices'));
             else
-                return DB::select('select * from notices where (role= ? or role="Both") and active=1', [$role]);
+                return json_encode(DB::select('select * from notices where (role= ? or role="Both") and active=1', [$role]));
         } else {
             return response()->json(['error' => 'Token incorrect'],Response::HTTP_UNPROCESSABLE_ENTITY);
         }
